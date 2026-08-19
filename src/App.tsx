@@ -170,6 +170,19 @@ export default function App() {
               alt="Kit Visual Para Organizar Sua Casa com princípios japoneses, apresentado em computador, celular e guias impressos"
               className="relative block h-auto w-full rounded-3xl border border-white/10 shadow-2xl"
             />
+            <div className="relative mt-4 grid overflow-hidden rounded-2xl border border-white/10 bg-[#153D2C] text-white shadow-2xl sm:grid-cols-2">
+              {[
+                { icon: Printer, title: 'Pronto para imprimir e usar', text: 'Acesse, imprima e coloque em prática.' },
+                { icon: Eye, title: 'Visual e intuitivo', text: 'Entenda rápido e aplique com facilidade.' },
+                { icon: Zap, title: 'Ferramenta prática', text: 'Economize tempo e energia nas decisões.' },
+                { icon: Home, title: 'Para toda a casa', text: 'Do quarto à cozinha, tudo no lugar.' },
+              ].map((item) => (
+                <div key={item.title} className="flex gap-3 border-b border-white/10 p-4 last:border-b-0 sm:[&:nth-child(odd)]:border-r sm:[&:nth-child(3)]:border-b-0">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#DFFF04]/70 text-[#DFFF04]"><item.icon className="h-5 w-5" /></div>
+                  <div><p className="text-xs font-black uppercase leading-tight tracking-wide">{item.title}</p><p className="mt-1 text-xs leading-relaxed text-white/70">{item.text}</p></div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </header>
