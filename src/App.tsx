@@ -2,21 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import {
   ArrowRight, Check, CheckCircle2, ChevronDown, CircleAlert,
   Clock3, Eye, Gift, Home, Loader2, Lock, Map,
-  Package, Printer, ShieldCheck, ShoppingBag, Smartphone,
+  Package, Printer, ShieldCheck, ShoppingBag,
   TimerReset, Users, X, Zap,
 } from 'lucide-react';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 
 type ModalState = 'idle' | 'submitting' | 'success' | 'error';
-
-const guides = [
-  'Cozinha', 'Geladeira e despensa', 'Quartos', 'Armários e guarda-roupas',
-  'Banheiros', 'Área de serviço', 'Sala de estar', 'Sala de jantar',
-  'Home office', 'Áreas externas', 'Crianças e brinquedos', 'Documentos e papéis',
-  'Produtos de limpeza', 'Ferramentas e manutenção', 'Decoração e acessórios',
-  'Compras e reposição', 'Guardar, doar ou descartar', 'Onde começar hoje',
-  'Manutenção semanal', 'Manutenção diária',
-];
 
 const bonuses = [
   { number: '01', title: 'Rotina de 15 minutos', description: 'Um plano visual para distribuir pequenas ações ao longo do dia e evitar o acúmulo.', icon: TimerReset },
@@ -233,7 +224,7 @@ export default function App() {
       <section className="bg-white py-20"><div className="mx-auto max-w-5xl px-5"><Reveal><div className="grid overflow-hidden rounded-3xl border border-neutral-200 md:grid-cols-[.8fr_1.2fr]"><div className="flex min-h-64 flex-col justify-between bg-neutral-950 p-8 text-white md:p-10"><ShieldCheck className="h-12 w-12 text-[#DFFF04]" /><div><p className="text-xs font-black uppercase tracking-[.2em] text-[#DFFF04]">Transparência primeiro</p><h2 className="mt-3 text-3xl font-black">Produto em lançamento</h2></div></div><div className="p-8 md:p-10"><h3 className="text-2xl font-black">Sem depoimentos inventados.</h3><p className="mt-4 leading-relaxed text-neutral-600">As avaliações serão publicadas somente depois que as primeiras compradoras enviarem relatos reais. Até lá, avalie a proposta pelo que o kit entrega:</p><div className="mt-7 grid gap-3 sm:grid-cols-2">{['20 guias visuais', 'Organização por ambientes', 'Consulta pelo celular', 'Passos simples e objetivos'].map((item) => <div key={item} className="flex items-center gap-2 font-bold"><CheckCircle2 className="h-5 w-5 text-lime-700" />{item}</div>)}</div></div></div></Reveal></div></section>
 
       {/* 7 — PRODUTO PRINCIPAL */}
-      <section className="bg-[#2C2C2C] py-20 text-white"><div className="mx-auto max-w-6xl px-5"><Reveal className="text-center"><p className="eyebrow-light">Produto principal</p><h2 className="section-title text-white">20 Guias Visuais para uma Casa Organizada</h2><p className="section-copy mx-auto max-w-2xl text-neutral-400">Um material separado por ambientes e decisões para você consultar exatamente quando precisar.</p></Reveal><div className="mt-12 grid items-start gap-10 lg:grid-cols-[.85fr_1.15fr]"><Reveal><div className="rounded-3xl bg-white p-6 text-neutral-900 shadow-2xl"><div className="rounded-2xl bg-neutral-100 p-8 text-center"><div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-neutral-900 text-[#DFFF04]"><Home className="h-8 w-8" /></div><p className="mt-7 text-sm font-black uppercase tracking-[.22em] text-lime-700">Kit visual</p><h3 className="mt-2 text-4xl font-black">Casa em Ordem</h3><p className="mt-3 text-neutral-600">Sistema 5S adaptado para a vida real</p></div><div className="mt-5 flex items-center justify-around text-center"><div><p className="text-2xl font-black">20</p><p className="text-xs text-neutral-500">guias</p></div><div className="h-10 w-px bg-neutral-200" /><div><Smartphone className="mx-auto h-6 w-6" /><p className="mt-1 text-xs text-neutral-500">digital</p></div><div className="h-10 w-px bg-neutral-200" /><div><Printer className="mx-auto h-6 w-6" /><p className="mt-1 text-xs text-neutral-500">imprimível</p></div></div></div></Reveal><div className="grid gap-3 sm:grid-cols-2">{guides.map((guide, i) => <div key={guide} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4"><span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#DFFF04] text-xs font-black text-neutral-950">{String(i + 1).padStart(2, '0')}</span><span className="text-sm font-semibold text-neutral-200">Guia visual: {guide}</span></div>)}</div></div></div></section>
+      <section className="bg-[#2C2C2C] py-20 text-white"><div className="mx-auto max-w-6xl px-5"><Reveal className="text-center"><p className="eyebrow-light">Produto principal</p><h2 className="section-title text-white">20 Guias Visuais para uma Casa Organizada</h2><p className="section-copy mx-auto max-w-2xl text-neutral-400">Um material separado por ambientes e decisões para você consultar exatamente quando precisar.</p></Reveal><Reveal className="mx-auto mt-12 max-w-5xl"><img src="/kit-visual-casa-organizada.png" alt="Mockup completo do Kit Visual para organizar a casa, com guias, computador, tablet e celular" loading="lazy" className="block h-auto w-full rounded-3xl" /></Reveal></div></section>
 
       {/* 8 — BÔNUS */}
       <section className="bg-[#2C2C2C] pb-20 text-white"><div className="mx-auto max-w-6xl border-t border-white/10 px-5 pt-20"><Reveal className="text-center"><div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#DFFF04] px-4 py-2 text-xs font-black uppercase tracking-widest text-neutral-950"><Gift className="h-4 w-4" />Plano completo</div><h2 className="section-title text-white">Além dos 20 guias, você recebe 3 bônus.</h2></Reveal><div className="mt-12 grid gap-5 md:grid-cols-3">{bonuses.map((bonus, i) => <Reveal key={bonus.title} delay={i * 100}><article className="h-full rounded-2xl border border-white/10 bg-white/5 p-6"><div className="flex items-center justify-between"><div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#DFFF04] text-neutral-950"><bonus.icon className="h-6 w-6" /></div><span className="text-4xl font-black text-white/10">{bonus.number}</span></div><h3 className="mt-7 text-xl font-black">{bonus.title}</h3><p className="mt-3 text-sm leading-relaxed text-neutral-400">{bonus.description}</p></article></Reveal>)}</div></div></section>
