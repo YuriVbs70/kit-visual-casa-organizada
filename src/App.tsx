@@ -197,7 +197,7 @@ export default function App() {
       <section className="bg-[#F7F7F7] py-20"><div className="mx-auto max-w-6xl px-5">
         <Reveal className="text-center"><p className="eyebrow">Veja o material na prática</p><h2 className="section-title mx-auto max-w-3xl">Não é mais um conteúdo para assistir. É uma referência visual para usar.</h2><p className="section-copy mx-auto max-w-2xl">Cada página transforma uma decisão difícil em um caminho claro: olhar, escolher e aplicar no ambiente.</p></Reveal>
         <Reveal className="mt-12 overflow-hidden py-4">
-          <div className="showcase-track flex w-max gap-5 hover:[animation-play-state:paused]">
+          <div className="showcase-track flex w-max gap-5">
             {[...demoImages, ...demoImages].map((image, i) => (
               <div key={`${image.src}-${i}`} aria-hidden={i >= demoImages.length} className="w-[72vw] max-w-sm shrink-0 md:w-[340px]">
                 <img src={image.src} alt={i < demoImages.length ? image.alt : ''} loading="lazy" className="block h-auto w-full rounded-2xl border border-neutral-200 bg-white shadow-lg" />
