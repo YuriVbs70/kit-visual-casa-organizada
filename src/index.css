@@ -6,17 +6,17 @@
 
 @layer base {
   html { scroll-behavior: smooth; }
-  body { margin: 0; min-width: 320px; background: #fff; font-family: 'Inter', system-ui, sans-serif; }
+  body { margin: 0; min-width: 320px; background: #fff8f3; font-family: 'Inter', system-ui, sans-serif; color: #352c29; }
   button, input { font: inherit; }
-  ::selection { background: #dfff04; color: #111; }
+  ::selection { background: #f3c8bf; color: #352c29; }
 }
 
 @layer components {
-  .eyebrow { @apply text-xs font-black uppercase tracking-[0.2em] text-lime-700; }
-  .eyebrow-light { @apply text-xs font-black uppercase tracking-[0.2em] text-[#DFFF04]; }
+  .eyebrow { @apply text-xs font-black uppercase tracking-[0.2em] text-[#B65347]; }
+  .eyebrow-light { @apply text-xs font-black uppercase tracking-[0.2em] text-[#F2A99D]; }
   .section-title { @apply mt-3 text-3xl font-black leading-tight text-neutral-900 md:text-4xl; }
   .section-copy { @apply mt-4 leading-relaxed text-neutral-600; }
-  .form-input { @apply mt-1.5 w-full rounded-xl border border-neutral-200 px-4 py-3 outline-none focus:border-lime-500 focus:ring-2 focus:ring-lime-100; }
+  .form-input { @apply mt-1.5 w-full rounded-xl border border-[#E6D6CF] bg-[#FFFCFA] px-4 py-3 outline-none focus:border-[#D9796B] focus:ring-2 focus:ring-[#F7DED8]; }
 }
 
 @keyframes showcase-scroll-right {
