@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import {
   ArrowRight, BadgeCheck, Check, CheckCircle2, ChevronDown, CircleAlert,
   Clock3, Eye, Gift, Home, LayoutGrid, ListChecks, Loader2, Lock, Map,
-  Package, Printer, ShieldCheck, ShoppingBag, Smartphone, Sparkles,
+  Package, Printer, ShieldCheck, ShoppingBag, Smartphone,
   TimerReset, Users, X, Zap,
 } from 'lucide-react';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
@@ -157,7 +157,6 @@ export default function App() {
         <div className="pointer-events-none absolute right-0 top-20 z-[1] h-80 w-80 rounded-full bg-[#DFFF04]/10 blur-[100px]" />
         <div className="relative z-10 mx-auto grid min-h-[720px] max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-[1.05fr_.95fr] md:py-20">
           <div>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-neutral-200"><Sparkles className="h-4 w-4 text-[#DFFF04]" /> Sistema 5S adaptado para a rotina da casa</div>
             <h1 className="max-w-3xl text-4xl font-black leading-[1.06] sm:text-5xl md:text-6xl">Sua casa em ordem com um sistema <span className="text-[#DFFF04]">visual e fácil de seguir.</span></h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-neutral-300 md:text-xl">20 guias visuais para decidir onde guardar, o que manter e como organizar cada ambiente sem depender de grandes faxinas.</p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center"><CtaButton onClick={openModal} label="Quero receber o lançamento" /><span className="flex items-center gap-2 text-sm text-neutral-300"><BadgeCheck className="h-5 w-5 text-[#DFFF04]" /> Material digital · acesso pelo celular</span></div>
