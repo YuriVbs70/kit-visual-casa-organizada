@@ -167,7 +167,7 @@ export default function App() {
             <img
               src="/kit-visual-casa-organizada.png"
               alt="Kit Visual Para Organizar Sua Casa com princípios japoneses, apresentado em computador, celular e guias impressos"
-              className="relative block h-auto w-full rounded-3xl shadow-2xl"
+              className="relative block h-auto w-full rounded-3xl"
             />
             <div className="relative mt-4 grid grid-cols-4 overflow-hidden rounded-2xl border border-white/10 bg-[#153D2C] text-white shadow-2xl">
               {[
