@@ -106,7 +106,7 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
 function StickyCta({ onClick }: { onClick: () => void }) {
   const [visible, setVisible] = useState(false);
   useEffect(() => { const onScroll = () => setVisible(window.scrollY > 650); window.addEventListener('scroll', onScroll, { passive: true }); return () => window.removeEventListener('scroll', onScroll); }, []);
-  return <div className={`fixed inset-x-0 bottom-0 z-50 border-t border-neutral-700 bg-neutral-950/95 p-3 backdrop-blur transition-transform md:hidden ${visible ? 'translate-y-0' : 'translate-y-full'}`}><button onClick={onClick} className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#DFFF04] px-5 py-3.5 font-extrabold text-neutral-950">Quero receber o lançamento<ArrowRight className="h-5 w-5" /></button></div>;
+  return <div className={`fixed inset-x-0 bottom-0 z-50 border-t border-neutral-700 bg-neutral-950/95 p-3 backdrop-blur transition-transform md:hidden ${visible ? 'translate-y-0' : 'translate-y-full'}`}><button onClick={onClick} className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#DFFF04] px-5 py-3.5 font-extrabold text-neutral-950">Quero acessar os mapas<ArrowRight className="h-5 w-5" /></button></div>;
 }
 
 function useCountdown(durationInSeconds: number) {
@@ -161,7 +161,7 @@ export default function App() {
               <h1 className="max-w-3xl text-4xl font-black leading-[1.06] sm:text-5xl md:text-6xl">Sua casa em ordem com um sistema <span className="text-[#DFFF04]">visual e fácil de seguir.</span></h1>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-neutral-300 md:text-xl">20 guias visuais para decidir onde guardar, o que manter e como organizar cada ambiente sem depender de grandes faxinas.</p>
             </div>
-            <div className="order-3 md:mt-8"><CtaButton onClick={openModal} label="Quero receber o lançamento" /></div>
+            <div className="order-3 flex justify-center md:mt-8"><CtaButton onClick={openModal} label="Quero acessar os mapas" /></div>
           </div>
           <div className="order-2 relative mx-auto w-full max-w-md md:order-none">
             <img
