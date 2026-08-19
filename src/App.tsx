@@ -165,12 +165,11 @@ export default function App() {
           </div>
           <div className="order-2 relative mx-auto w-full max-w-md md:order-none">
             <div className="absolute -inset-4 rotate-3 rounded-3xl border border-[#DFFF04]/30" />
-            <div className="relative rounded-3xl bg-white p-5 text-neutral-900 shadow-2xl">
-              <div className="mb-4 flex items-center justify-between border-b border-neutral-100 pb-4"><div><p className="text-xs font-extrabold uppercase tracking-widest text-lime-700">Kit visual</p><p className="font-black">Casa em Ordem</p></div><div className="flex h-11 w-11 items-center justify-center rounded-xl bg-neutral-900 text-[#DFFF04]"><Home className="h-6 w-6" /></div></div>
-              <div className="rounded-2xl bg-neutral-100 p-5"><div className="mb-4 flex items-center gap-2"><Map className="h-5 w-5" /><span className="text-sm font-black">Mapa de decisão · Cozinha</span></div><div className="space-y-2.5">{['Uso todos os dias → fácil acesso', 'Uso às vezes → prateleira superior', 'Não uso → doar ou descartar', 'Item duplicado → escolher o necessário'].map((item) => <div key={item} className="flex items-center gap-2 rounded-lg bg-white px-3 py-3 text-xs font-semibold shadow-sm"><Check className="h-4 w-4 shrink-0 text-lime-700" />{item}</div>)}</div></div>
-              <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs font-bold"><div className="rounded-lg bg-[#DFFF04] px-2 py-3">20 guias</div><div className="rounded-lg bg-neutral-100 px-2 py-3">Passo a passo</div><div className="rounded-lg bg-neutral-100 px-2 py-3">100% digital</div></div>
-            </div>
-            <div className="absolute -bottom-5 -left-3 rounded-xl bg-[#DFFF04] px-4 py-3 text-sm font-black text-neutral-950 shadow-xl">Consulte quando precisar</div>
+            <img
+              src="/kit-visual-casa-organizada.png"
+              alt="Kit Visual Para Organizar Sua Casa com princípios japoneses, apresentado em computador, celular e guias impressos"
+              className="relative block h-auto w-full rounded-3xl border border-white/10 shadow-2xl"
+            />
           </div>
         </div>
       </header>
