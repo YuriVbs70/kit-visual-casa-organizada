@@ -18,3 +18,17 @@
   .section-copy { @apply mt-4 leading-relaxed text-neutral-600; }
   .form-input { @apply mt-1.5 w-full rounded-xl border border-neutral-200 px-4 py-3 outline-none focus:border-lime-500 focus:ring-2 focus:ring-lime-100; }
 }
+
+@keyframes showcase-scroll-right {
+  from { transform: translateX(calc(-50% - 0.625rem)); }
+  to { transform: translateX(0); }
+}
+
+.showcase-track {
+  animation: showcase-scroll-right 28s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase-track { animation: none; }
+}

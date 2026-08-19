@@ -24,6 +24,12 @@ const bonuses = [
   { number: '03', title: 'Envolvendo a família', description: 'Orientações visuais para deixar claro onde cada item pertence e facilitar a participação de todos.', icon: Users },
 ];
 
+const demoImages = [
+  { src: '/guia-como-usar-kit.png', alt: 'Guia visual explicando como usar o kit de organização da casa' },
+  { src: '/mapa-rotina-visual-casa.png', alt: 'Mapa visual da rotina diária, semanal e mensal da casa' },
+  { src: '/mapa-cozinha-organizada.png', alt: 'Mapa visual com o fluxo para manter a cozinha organizada' },
+];
+
 function LeadModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -190,11 +196,15 @@ export default function App() {
       {/* 2 — DEMONSTRATIVO */}
       <section className="bg-[#F7F7F7] py-20"><div className="mx-auto max-w-6xl px-5">
         <Reveal className="text-center"><p className="eyebrow">Veja o material na prática</p><h2 className="section-title mx-auto max-w-3xl">Não é mais um conteúdo para assistir. É uma referência visual para usar.</h2><p className="section-copy mx-auto max-w-2xl">Cada página transforma uma decisão difícil em um caminho claro: olhar, escolher e aplicar no ambiente.</p></Reveal>
-        <div className="mt-12 grid items-start gap-5 md:grid-cols-3">{[
-          { src: '/guia-como-usar-kit.png', alt: 'Guia visual explicando como usar o kit de organização da casa' },
-          { src: '/mapa-rotina-visual-casa.png', alt: 'Mapa visual da rotina diária, semanal e mensal da casa' },
-          { src: '/mapa-cozinha-organizada.png', alt: 'Mapa visual com o fluxo para manter a cozinha organizada' },
-        ].map((image, i) => <Reveal key={image.src} delay={i * 100}><img src={image.src} alt={image.alt} loading="lazy" className="block h-auto w-full rounded-2xl border border-neutral-200 bg-white shadow-lg transition hover:-translate-y-1 hover:shadow-2xl" /></Reveal>)}</div>
+        <Reveal className="mt-12 overflow-hidden py-4">
+          <div className="showcase-track flex w-max gap-5 hover:[animation-play-state:paused]">
+            {[...demoImages, ...demoImages].map((image, i) => (
+              <div key={`${image.src}-${i}`} aria-hidden={i >= demoImages.length} className="w-[72vw] max-w-sm shrink-0 md:w-[340px]">
+                <img src={image.src} alt={i < demoImages.length ? image.alt : ''} loading="lazy" className="block h-auto w-full rounded-2xl border border-neutral-200 bg-white shadow-lg" />
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </div></section>
 
       {/* 3 — BENEFÍCIOS */}
