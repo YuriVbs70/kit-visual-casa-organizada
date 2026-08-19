@@ -166,8 +166,8 @@ export default function App() {
         <div className="relative z-10 mx-auto grid min-h-[720px] max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-[1.05fr_.95fr] md:py-20">
           <div className="contents md:block">
             <div className="order-1 text-center">
-              <h1 className="mx-auto max-w-3xl text-4xl font-black leading-[1.06] sm:text-5xl md:text-6xl">Sua casa em ordem com um sistema <span className="text-[#F2A99D]">visual e fácil de seguir.</span></h1>
-              <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-neutral-300 md:text-xl">20 guias visuais para decidir onde guardar, o que manter e como organizar cada ambiente sem depender de grandes faxinas.</p>
+              <h1 className="mx-auto max-w-3xl text-4xl font-black leading-[1.06] sm:text-5xl md:text-6xl">20 mapas visuais com princípios japoneses que irão deixar sua <span className="text-[#F2A99D]">casa sempre arrumada.</span></h1>
+              <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-neutral-300 md:text-xl">Com estes guias, você nunca mais ficará em dúvida sobre onde começar. Eles mostram onde guardar, o que manter e como organizar cada ambiente.</p>
             </div>
             <div className="order-3 flex justify-center md:mt-8"><CtaButton onClick={scrollToCompleteOffer} label="Quero acessar os mapas" variant="maps" /></div>
           </div>
