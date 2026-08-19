@@ -1,37 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-  body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; min-width: 320px; background: #fff; font-family: 'Inter', system-ui, sans-serif; }
+  button, input { font: inherit; }
+  ::selection { background: #dfff04; color: #111; }
 }
 
-@layer utilities {
-  @keyframes fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  @keyframes scale-in {
-    from {
-      opacity: 0;
-      transform: scale(0.95) translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-  }
-  .animate-fade-in {
-    animation: fade-in 0.2s ease-out;
-  }
-  .animate-scale-in {
-    animation: scale-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  }
+@layer components {
+  .eyebrow { @apply text-xs font-black uppercase tracking-[0.2em] text-lime-700; }
+  .eyebrow-light { @apply text-xs font-black uppercase tracking-[0.2em] text-[#DFFF04]; }
+  .section-title { @apply mt-3 text-3xl font-black leading-tight text-neutral-900 md:text-4xl; }
+  .section-copy { @apply mt-4 leading-relaxed text-neutral-600; }
+  .form-input { @apply mt-1.5 w-full rounded-xl border border-neutral-200 px-4 py-3 outline-none focus:border-lime-500 focus:ring-2 focus:ring-lime-100; }
 }
