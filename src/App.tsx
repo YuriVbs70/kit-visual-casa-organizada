@@ -171,7 +171,7 @@ export default function App() {
             />
             <div className="relative mt-4 grid grid-cols-4 overflow-hidden rounded-2xl border border-white/10 bg-[#153D2C] text-white shadow-2xl">
               {[
-                { icon: Printer, title: 'Pronto para imprimir e usar', text: 'Acesse, imprima e coloque em prática.' },
+                { icon: Printer, title: 'Pronto para imprimir ou acessar no celular.' },
                 { icon: Eye, title: 'Visual e intuitivo', text: 'Entenda rápido e aplique com facilidade.' },
                 { icon: Zap, title: 'Ferramenta prática', text: 'Economize tempo e energia nas decisões.' },
                 { icon: Home, title: 'Para toda a casa', text: 'Do quarto à cozinha, tudo no lugar.' },
@@ -179,7 +179,7 @@ export default function App() {
                 <div key={item.title} className="flex min-w-0 flex-col items-center border-r border-white/10 px-2 py-4 text-center last:border-r-0 sm:px-3">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#DFFF04]/70 text-[#DFFF04]"><item.icon className="h-5 w-5" /></div>
                   <p className="mt-3 text-[9px] font-black uppercase leading-tight tracking-wide sm:text-[10px]">{item.title}</p>
-                  <p className="mt-1 text-[8px] leading-snug text-white/70 sm:text-[10px]">{item.text}</p>
+                  {item.text && <p className="mt-1 text-[8px] leading-snug text-white/70 sm:text-[10px]">{item.text}</p>}
                 </div>
               ))}
             </div>
