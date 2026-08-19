@@ -164,14 +164,14 @@ export default function App() {
         />
         <div className="pointer-events-none absolute right-0 top-20 z-[1] h-80 w-80 rounded-full bg-[#F3C8BF]/20 blur-[100px]" />
         <div className="relative z-10 mx-auto grid min-h-[720px] max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-[1.05fr_.95fr] md:py-20">
-          <div className="contents md:block">
-            <div className="order-1 text-center">
+          <div className="contents md:order-2 md:block">
+            <div className="order-2 text-center">
               <h1 className="mx-auto max-w-3xl text-4xl font-black leading-[1.06] sm:text-5xl md:text-6xl">20 mapas visuais com princípios japoneses que irão deixar sua <span className="text-[#F2A99D]">casa sempre arrumada.</span></h1>
               <p className="mx-auto mt-6 max-w-xl text-lg font-medium leading-relaxed text-[#FFF3EC] drop-shadow-sm md:text-xl">Tenha mais tempo para aproveitar folgas e descansos em casa.</p>
             </div>
             <div className="order-3 flex justify-center md:mt-8"><CtaButton onClick={scrollToCompleteOffer} label="Quero acessar os mapas" variant="maps" /></div>
           </div>
-          <div className="order-2 relative mx-auto w-full max-w-md md:order-none">
+          <div className="order-1 relative mx-auto w-full max-w-md md:order-1">
             <img
               src="/kit-visual-casa-organizada.png"
               alt="Kit Visual Para Organizar Sua Casa com princípios japoneses, apresentado em computador, celular e guias impressos"
