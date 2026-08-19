@@ -164,11 +164,10 @@ export default function App() {
             <div className="order-3 flex flex-col gap-4 sm:flex-row sm:items-center md:mt-8"><CtaButton onClick={openModal} label="Quero receber o lançamento" /><span className="flex items-center gap-2 text-sm text-neutral-300"><BadgeCheck className="h-5 w-5 text-[#DFFF04]" /> Material digital · acesso pelo celular</span></div>
           </div>
           <div className="order-2 relative mx-auto w-full max-w-md md:order-none">
-            <div className="absolute -inset-4 rotate-3 rounded-3xl border border-[#DFFF04]/30" />
             <img
               src="/kit-visual-casa-organizada.png"
               alt="Kit Visual Para Organizar Sua Casa com princípios japoneses, apresentado em computador, celular e guias impressos"
-              className="relative block h-auto w-full rounded-3xl border border-white/10 shadow-2xl"
+              className="relative block h-auto w-full rounded-3xl shadow-2xl"
             />
             <div className="relative mt-4 grid grid-cols-4 overflow-hidden rounded-2xl border border-white/10 bg-[#153D2C] text-white shadow-2xl">
               {[
