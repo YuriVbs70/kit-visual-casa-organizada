@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import {
   ArrowRight, Check, CheckCircle2, ChevronDown, CircleAlert,
-  Clock3, Eye, Gift, Home, LayoutGrid, ListChecks, Loader2, Lock, Map,
+  Clock3, Eye, Gift, Home, Loader2, Lock, Map,
   Package, Printer, ShieldCheck, ShoppingBag, Smartphone,
   TimerReset, Users, X, Zap,
 } from 'lucide-react';
@@ -190,11 +190,11 @@ export default function App() {
       {/* 2 — DEMONSTRATIVO */}
       <section className="bg-[#F7F7F7] py-20"><div className="mx-auto max-w-6xl px-5">
         <Reveal className="text-center"><p className="eyebrow">Veja o material na prática</p><h2 className="section-title mx-auto max-w-3xl">Não é mais um conteúdo para assistir. É uma referência visual para usar.</h2><p className="section-copy mx-auto max-w-2xl">Cada página transforma uma decisão difícil em um caminho claro: olhar, escolher e aplicar no ambiente.</p></Reveal>
-        <div className="mt-12 grid gap-5 md:grid-cols-3">{[
-          { icon: Eye, label: 'Mapa visual', title: 'Veja a decisão completa', desc: 'Fluxos simples mostram o próximo passo sem textos longos.' },
-          { icon: ListChecks, label: 'Checklist', title: 'Aplique em pequenas etapas', desc: 'Marque o que já foi feito e avance no seu ritmo.' },
-          { icon: LayoutGrid, label: 'Por ambiente', title: 'Consulte só o que precisa', desc: 'Abra o guia da cozinha, quarto, banheiro ou outro espaço.' },
-        ].map((card, i) => <Reveal key={card.title} delay={i * 100}><article className="h-full rounded-2xl border border-neutral-200 bg-white p-6 transition hover:-translate-y-1 hover:shadow-xl"><div className="mb-7 flex h-14 w-14 items-center justify-center rounded-xl bg-neutral-900 text-[#DFFF04]"><card.icon className="h-7 w-7" /></div><p className="text-xs font-black uppercase tracking-[.18em] text-lime-700">{card.label}</p><h3 className="mt-2 text-xl font-black">{card.title}</h3><p className="mt-3 leading-relaxed text-neutral-600">{card.desc}</p></article></Reveal>)}</div>
+        <div className="mt-12 grid items-start gap-5 md:grid-cols-3">{[
+          { src: '/guia-como-usar-kit.png', alt: 'Guia visual explicando como usar o kit de organização da casa' },
+          { src: '/mapa-rotina-visual-casa.png', alt: 'Mapa visual da rotina diária, semanal e mensal da casa' },
+          { src: '/mapa-cozinha-organizada.png', alt: 'Mapa visual com o fluxo para manter a cozinha organizada' },
+        ].map((image, i) => <Reveal key={image.src} delay={i * 100}><img src={image.src} alt={image.alt} loading="lazy" className="block h-auto w-full rounded-2xl border border-neutral-200 bg-white shadow-lg transition hover:-translate-y-1 hover:shadow-2xl" /></Reveal>)}</div>
       </div></section>
 
       {/* 3 — BENEFÍCIOS */}
