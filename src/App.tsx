@@ -148,7 +148,7 @@ export default function App() {
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-45"
-          style={{ backgroundImage: "url('/hero-casa-organizada.jpg')" }}
+          style={{ backgroundImage: "url('/hero-casa-organizada-japones.png')" }}
         />
         <div
           aria-hidden="true"
