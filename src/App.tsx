@@ -109,8 +109,26 @@ function StickyCta({ onClick }: { onClick: () => void }) {
   return <div className={`fixed inset-x-0 bottom-0 z-50 border-t border-neutral-700 bg-neutral-950/95 p-3 backdrop-blur transition-transform md:hidden ${visible ? 'translate-y-0' : 'translate-y-full'}`}><button onClick={onClick} className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#DFFF04] px-5 py-3.5 font-extrabold text-neutral-950">Quero receber o lançamento<ArrowRight className="h-5 w-5" /></button></div>;
 }
 
+function useCountdown(durationInSeconds: number) {
+  const [secondsLeft, setSecondsLeft] = useState(durationInSeconds);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setSecondsLeft((current) => Math.max(0, current - 1));
+    }, 1000);
+
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const minutes = Math.floor(secondsLeft / 60).toString().padStart(2, '0');
+  const seconds = (secondsLeft % 60).toString().padStart(2, '0');
+
+  return `${minutes}:${seconds}`;
+}
+
 export default function App() {
   const [modalOpen, setModalOpen] = useState(false);
+  const countdown = useCountdown(17 * 60);
   const openModal = () => setModalOpen(true);
   return (
     <div className="min-h-screen bg-white text-neutral-900 antialiased">
@@ -119,7 +137,14 @@ export default function App() {
 
       {/* 1 — VENDA DIRETA */}
       <header className="relative overflow-hidden bg-[#2A2A2A] text-white">
-        <div className="border-b border-white/10 bg-[#DFFF04] px-5 py-3 text-center text-xs font-black uppercase tracking-[.16em] text-neutral-950 sm:text-sm">Oferta de lançamento · planos a partir de R$ 17,90</div>
+        <div className="border-b border-white/10 bg-[#DFFF04] px-4 py-3 text-neutral-950">
+          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center">
+            <span className="text-xs font-black uppercase tracking-[.14em] sm:text-sm">Essa oferta irá encerrar em:</span>
+            <span className="rounded-lg bg-neutral-950 px-3 py-1.5 text-lg font-black tabular-nums tracking-wider text-[#DFFF04]" aria-live="polite" aria-label={`Tempo restante: ${countdown}`}>
+              {countdown}
+            </span>
+          </div>
+        </div>
         <div className="pointer-events-none absolute right-0 top-20 h-80 w-80 rounded-full bg-[#DFFF04]/10 blur-[100px]" />
         <div className="relative mx-auto grid min-h-[720px] max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-[1.05fr_.95fr] md:py-20">
           <div>
