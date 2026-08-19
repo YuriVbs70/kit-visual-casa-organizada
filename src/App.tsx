@@ -179,7 +179,7 @@ export default function App() {
                 <div key={item.title} className="flex min-w-0 flex-col items-center border-r border-white/10 px-2 py-4 text-center last:border-r-0 sm:px-3">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#DFFF04]/70 text-[#DFFF04]"><item.icon className="h-5 w-5" /></div>
                   <p className="mt-3 text-[9px] font-black uppercase leading-tight tracking-wide sm:text-[10px]">{item.title}</p>
-                  {item.text && <p className="mt-1 text-[8px] leading-snug text-white/70 sm:text-[10px]">{item.text}</p>}
+                  {item.text && <p className="mt-1 text-[9px] font-black uppercase leading-tight tracking-wide text-white sm:text-[10px]">{item.text}</p>}
                 </div>
               ))}
             </div>
