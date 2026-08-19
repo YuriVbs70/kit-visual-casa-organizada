@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import {
   ArrowRight, Check, CheckCircle2, ChevronDown, CircleAlert,
-  Clock3, Eye, Gift, Home, Loader2, Lock, Map,
+  Clock3, Eye, Home, Loader2, Lock, Map,
   Package, Printer, ShieldCheck, ShoppingBag,
   TimerReset, Users, X, Zap,
 } from 'lucide-react';
@@ -227,7 +227,7 @@ export default function App() {
       <section className="bg-[#2C2C2C] py-20 text-white"><div className="mx-auto max-w-6xl px-5"><Reveal className="text-center"><h2 className="section-title text-white">O que você irá receber</h2><p className="section-copy mx-auto max-w-2xl text-neutral-400">Um material separado por ambientes e decisões para você consultar exatamente quando precisar.</p></Reveal><Reveal className="mx-auto mt-12 max-w-5xl"><img src="/kit-visual-casa-organizada.png" alt="Mockup completo do Kit Visual para organizar a casa, com guias, computador, tablet e celular" loading="lazy" className="block h-auto w-full rounded-3xl" /></Reveal></div></section>
 
       {/* 8 — BÔNUS */}
-      <section className="bg-[#2C2C2C] pb-20 text-white"><div className="mx-auto max-w-6xl border-t border-white/10 px-5 pt-20"><Reveal className="text-center"><div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#DFFF04] px-4 py-2 text-xs font-black uppercase tracking-widest text-neutral-950"><Gift className="h-4 w-4" />Plano completo</div><h2 className="section-title text-white">Além dos 20 guias, você recebe 3 bônus.</h2></Reveal><div className="mt-12 grid gap-5 md:grid-cols-3">{bonuses.map((bonus, i) => <Reveal key={bonus.title} delay={i * 100}><article className="h-full rounded-2xl border border-white/10 bg-white/5 p-6"><div className="flex items-center justify-between"><div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#DFFF04] text-neutral-950"><bonus.icon className="h-6 w-6" /></div><span className="text-4xl font-black text-white/10">{bonus.number}</span></div><h3 className="mt-7 text-xl font-black">{bonus.title}</h3><p className="mt-3 text-sm leading-relaxed text-neutral-400">{bonus.description}</p></article></Reveal>)}</div></div></section>
+      <section className="bg-[#2C2C2C] pb-20 text-white"><div className="mx-auto max-w-6xl border-t border-white/10 px-5 pt-20"><Reveal className="text-center"><h2 className="section-title text-white">Além dos 20 guias, você recebe 3 bônus.</h2></Reveal><div className="mt-12 grid gap-5 md:grid-cols-3">{bonuses.map((bonus, i) => <Reveal key={bonus.title} delay={i * 100}><article className="h-full rounded-2xl border border-white/10 bg-white/5 p-6"><div className="flex items-center justify-between"><div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#DFFF04] text-neutral-950"><bonus.icon className="h-6 w-6" /></div><span className="text-4xl font-black text-white/10">{bonus.number}</span></div><h3 className="mt-7 text-xl font-black">{bonus.title}</h3><p className="mt-3 text-sm leading-relaxed text-neutral-400">{bonus.description}</p></article></Reveal>)}</div></div></section>
 
       {/* 9 — OFERTA */}
       <section id="oferta" className="bg-[#EEEEEE] py-20"><div className="mx-auto max-w-6xl px-5"><Reveal className="text-center"><p className="eyebrow">Escolha a melhor opção</p><h2 className="section-title">Comece com os guias ou leve a experiência completa.</h2><p className="section-copy mx-auto max-w-2xl">Como o checkout ainda não está disponível, o botão cadastra seu interesse para receber o link de lançamento.</p></Reveal><div className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
