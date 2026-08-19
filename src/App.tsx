@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import {
-  ArrowRight, BadgeCheck, Check, CheckCircle2, ChevronDown, CircleAlert,
+  ArrowRight, Check, CheckCircle2, ChevronDown, CircleAlert,
   Clock3, Eye, Gift, Home, LayoutGrid, ListChecks, Loader2, Lock, Map,
   Package, Printer, ShieldCheck, ShoppingBag, Smartphone,
   TimerReset, Users, X, Zap,
@@ -161,7 +161,7 @@ export default function App() {
               <h1 className="max-w-3xl text-4xl font-black leading-[1.06] sm:text-5xl md:text-6xl">Sua casa em ordem com um sistema <span className="text-[#DFFF04]">visual e fácil de seguir.</span></h1>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-neutral-300 md:text-xl">20 guias visuais para decidir onde guardar, o que manter e como organizar cada ambiente sem depender de grandes faxinas.</p>
             </div>
-            <div className="order-3 flex flex-col gap-4 sm:flex-row sm:items-center md:mt-8"><CtaButton onClick={openModal} label="Quero receber o lançamento" /><span className="flex items-center gap-2 text-sm text-neutral-300"><BadgeCheck className="h-5 w-5 text-[#DFFF04]" /> Material digital · acesso pelo celular</span></div>
+            <div className="order-3 md:mt-8"><CtaButton onClick={openModal} label="Quero receber o lançamento" /></div>
           </div>
           <div className="order-2 relative mx-auto w-full max-w-md md:order-none">
             <img
