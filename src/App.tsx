@@ -137,7 +137,7 @@ export default function App() {
 
       {/* 1 — VENDA DIRETA */}
       <header className="relative overflow-hidden bg-[#2A2A2A] text-white">
-        <div className="border-b border-white/10 bg-[#DFFF04] px-4 py-3 text-neutral-950">
+        <div className="relative z-20 border-b border-white/10 bg-[#DFFF04] px-4 py-3 text-neutral-950">
           <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center">
             <span className="text-xs font-black uppercase tracking-[.14em] sm:text-sm">Essa oferta irá encerrar em:</span>
             <span className="rounded-lg bg-neutral-950 px-3 py-1.5 text-lg font-black tabular-nums tracking-wider text-[#DFFF04]" aria-live="polite" aria-label={`Tempo restante: ${countdown}`}>
@@ -145,8 +145,17 @@ export default function App() {
             </span>
           </div>
         </div>
-        <div className="pointer-events-none absolute right-0 top-20 h-80 w-80 rounded-full bg-[#DFFF04]/10 blur-[100px]" />
-        <div className="relative mx-auto grid min-h-[720px] max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-[1.05fr_.95fr] md:py-20">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-30"
+          style={{ backgroundImage: "url('/hero-casa-organizada.jpg')" }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#2A2A2A]/95 via-[#2A2A2A]/85 to-[#2A2A2A]/70"
+        />
+        <div className="pointer-events-none absolute right-0 top-20 z-[1] h-80 w-80 rounded-full bg-[#DFFF04]/10 blur-[100px]" />
+        <div className="relative z-10 mx-auto grid min-h-[720px] max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-[1.05fr_.95fr] md:py-20">
           <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-neutral-200"><Sparkles className="h-4 w-4 text-[#DFFF04]" /> Sistema 5S adaptado para a rotina da casa</div>
             <h1 className="max-w-3xl text-4xl font-black leading-[1.06] sm:text-5xl md:text-6xl">Sua casa em ordem com um sistema <span className="text-[#DFFF04]">visual e fácil de seguir.</span></h1>
