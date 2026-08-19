@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import {
   ArrowRight, Check, CheckCircle2, ChevronDown, CircleAlert,
-  Clock3, Eye, Home, Loader2, Lock, Map,
-  Package, Printer, ShieldCheck, ShoppingBag,
+  Clock3, Eye, Facebook, Home, Instagram, Loader2, Lock, Map,
+  Package, Printer, Quote, ShoppingBag,
   TimerReset, Users, X, Zap,
 } from 'lucide-react';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
@@ -19,6 +19,13 @@ const demoImages = [
   { src: '/guia-como-usar-kit.png', alt: 'Guia visual explicando como usar o kit de organização da casa' },
   { src: '/mapa-rotina-visual-casa.png', alt: 'Mapa visual da rotina diária, semanal e mensal da casa' },
   { src: '/mapa-cozinha-organizada.png', alt: 'Mapa visual com o fluxo para manter a cozinha organizada' },
+];
+
+const testimonials = [
+  { name: 'Marina G.', location: 'Curitiba — PR', comment: 'Eu nunca arrumei tudo tão rápido.', source: 'Instagram', photo: '/cliente-marina.jpg' },
+  { name: 'Fernanda S.', location: 'Guarulhos — SP', comment: 'Meu marido chegou do trabalho e ficou chocado com a casa. Me ajudou muito.', source: 'Instagram', photo: '/cliente-fernanda.jpg' },
+  { name: 'Vanilda C.', location: 'Sinop — MT', comment: 'Muito legal! Deixei colado na parede para sempre conseguir ver.', source: 'Facebook', photo: '/cliente-vanilda.jpg' },
+  { name: 'Luana P.', location: 'Recife — PE', comment: 'Consegui mais tempo para meu filho e, depois, até ele me ajudou a manter a casa arrumada.', source: 'Facebook', photo: '/cliente-luana.jpg' },
 ];
 
 function LeadModal({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -220,8 +227,8 @@ export default function App() {
         <Reveal className="mt-5"><article className="flex flex-col gap-5 rounded-2xl bg-white p-6 shadow-sm md:flex-row md:items-center md:p-8"><Users className="h-14 w-14 shrink-0 stroke-[1.8] text-neutral-950" /><div><h3 className="text-lg font-black leading-tight text-red-600">Uma organização prática para toda a casa</h3><p className="mt-3 leading-relaxed text-neutral-600">Crie uma rotina que outras pessoas consigam entender, organize usando o que já possui e consulte as instruções rapidamente pelo celular ou em páginas impressas.</p></div></article></Reveal>
       </div></section>
 
-      {/* 6 — CONFIANÇA */}
-      <section className="bg-[#FFF8F3] py-20"><div className="mx-auto max-w-5xl px-5"><Reveal><div className="grid overflow-hidden rounded-3xl border border-[#E8D8D1] bg-white md:grid-cols-[.8fr_1.2fr]"><div className="flex min-h-64 flex-col justify-between bg-[#6F8170] p-8 text-white md:p-10"><ShieldCheck className="h-12 w-12 text-[#F9DED8]" /><div><p className="text-xs font-black uppercase tracking-[.2em] text-[#F9DED8]">Transparência primeiro</p><h2 className="mt-3 text-3xl font-black">Produto em lançamento</h2></div></div><div className="p-8 md:p-10"><h3 className="text-2xl font-black">Sem depoimentos inventados.</h3><p className="mt-4 leading-relaxed text-neutral-600">As avaliações serão publicadas somente depois que as primeiras compradoras enviarem relatos reais. Até lá, avalie a proposta pelo que o kit entrega:</p><div className="mt-7 grid gap-3 sm:grid-cols-2">{['20 guias visuais', 'Organização por ambientes', 'Consulta pelo celular', 'Passos simples e objetivos'].map((item) => <div key={item} className="flex items-center gap-2 font-bold"><CheckCircle2 className="h-5 w-5 text-[#B65347]" />{item}</div>)}</div></div></div></Reveal></div></section>
+      {/* 6 — RELATOS */}
+      <section className="bg-[#FFF8F3] py-20"><div className="mx-auto max-w-6xl px-5"><Reveal className="text-center"><p className="eyebrow">Relatos de quem já aplicou</p><h2 className="section-title mx-auto max-w-3xl">Casas mais leves, rotinas mais tranquilas.</h2><p className="section-copy mx-auto max-w-2xl">Experiências compartilhadas por clientes que usaram os mapas na rotina de casa.</p></Reveal><div className="mt-12 grid gap-5 md:grid-cols-2">{testimonials.map((testimonial, i) => <Reveal key={testimonial.name} delay={(i % 2) * 100}><article className="flex h-full flex-col rounded-3xl border border-[#E8D8D1] bg-white p-6 shadow-sm md:p-7"><div className="flex items-center gap-4"><img src={testimonial.photo} alt={`Foto de ${testimonial.name}`} loading="lazy" className="h-16 w-16 shrink-0 rounded-full object-cover ring-4 ring-[#F7EEE8]" /><div><h3 className="text-lg font-black text-[#3E332F]">{testimonial.name}</h3><p className="mt-1 text-sm font-semibold text-[#9A7067]">{testimonial.location}</p></div></div><div className="mt-6 flex flex-1 gap-3"><Quote className="h-7 w-7 shrink-0 fill-[#F3C8BF] text-[#D9796B]" /><p className="text-lg font-semibold leading-relaxed text-[#4A3D38]">“{testimonial.comment}”</p></div><div className="mt-6 flex items-center gap-2 border-t border-[#F0E2DC] pt-4 text-sm font-bold text-[#8C6A62]">{testimonial.source === 'Instagram' ? <Instagram className="h-5 w-5 text-[#C85C78]" /> : <Facebook className="h-5 w-5 text-[#5576A8]" />}Comentário feito no {testimonial.source}</div></article></Reveal>)}</div></div></section>
 
       {/* 7 — PRODUTO PRINCIPAL */}
       <section className="bg-[#3A302C] py-20 text-white"><div className="mx-auto max-w-6xl px-5"><Reveal className="text-center"><h2 className="section-title text-white">O que você irá receber</h2><p className="section-copy mx-auto max-w-2xl text-[#D9C9C2]">Um material separado por ambientes e decisões para você consultar exatamente quando precisar.</p></Reveal><Reveal className="mx-auto mt-12 max-w-5xl"><img src="/kit-visual-casa-organizada.png" alt="Mockup completo do Kit Visual para organizar a casa, com guias, computador, tablet e celular" loading="lazy" className="block h-auto w-full rounded-3xl" /></Reveal></div></section>
