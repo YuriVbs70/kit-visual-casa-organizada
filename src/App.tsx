@@ -147,12 +147,12 @@ export default function App() {
         </div>
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-30"
+          className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-45"
           style={{ backgroundImage: "url('/hero-casa-organizada.jpg')" }}
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#2A2A2A]/95 via-[#2A2A2A]/85 to-[#2A2A2A]/70"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#2A2A2A]/90 via-[#2A2A2A]/75 to-[#2A2A2A]/55"
         />
         <div className="pointer-events-none absolute right-0 top-20 z-[1] h-80 w-80 rounded-full bg-[#DFFF04]/10 blur-[100px]" />
         <div className="relative z-10 mx-auto grid min-h-[720px] max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-[1.05fr_.95fr] md:py-20">
