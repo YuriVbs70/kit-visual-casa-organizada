@@ -137,10 +137,10 @@ export default function App() {
 
       {/* 1 — VENDA DIRETA */}
       <header className="relative overflow-hidden bg-[#2A2A2A] text-white">
-        <div className="relative z-20 border-b border-white/10 bg-[#DFFF04] px-4 py-3 text-neutral-950">
+        <div className="relative z-20 border-b border-red-800 bg-red-600 px-4 py-3 text-white">
           <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center">
             <span className="text-xs font-black uppercase tracking-[.14em] sm:text-sm">Essa oferta irá encerrar em:</span>
-            <span className="rounded-lg bg-red-600 px-3 py-1.5 text-lg font-black tabular-nums tracking-wider text-white shadow-sm" aria-live="polite" aria-label={`Tempo restante: ${countdown}`}>
+            <span className="rounded-lg bg-red-950 px-3 py-1.5 text-lg font-black tabular-nums tracking-wider text-white shadow-sm" aria-live="polite" aria-label={`Tempo restante: ${countdown}`}>
               {countdown}
             </span>
           </div>
