@@ -134,10 +134,11 @@ export default function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const countdown = useCountdown(17 * 60);
   const openModal = () => setModalOpen(true);
+  const scrollToCompleteOffer = () => document.getElementById('oferta-completa')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   return (
     <div className="min-h-screen bg-white text-neutral-900 antialiased">
       <LeadModal open={modalOpen} onClose={() => setModalOpen(false)} />
-      <StickyCta onClick={openModal} />
+      <StickyCta onClick={scrollToCompleteOffer} />
 
       {/* 1 — VENDA DIRETA */}
       <header className="relative overflow-hidden bg-[#3E332F] text-white">
@@ -165,7 +166,7 @@ export default function App() {
               <h1 className="mx-auto max-w-3xl text-4xl font-black leading-[1.06] sm:text-5xl md:text-6xl">Sua casa em ordem com um sistema <span className="text-[#F2A99D]">visual e fácil de seguir.</span></h1>
               <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-neutral-300 md:text-xl">20 guias visuais para decidir onde guardar, o que manter e como organizar cada ambiente sem depender de grandes faxinas.</p>
             </div>
-            <div className="order-3 flex justify-center md:mt-8"><CtaButton onClick={openModal} label="Quero acessar os mapas" /></div>
+            <div className="order-3 flex justify-center md:mt-8"><CtaButton onClick={scrollToCompleteOffer} label="Quero acessar os mapas" /></div>
           </div>
           <div className="order-2 relative mx-auto w-full max-w-md md:order-none">
             <img
@@ -243,7 +244,7 @@ export default function App() {
       {/* 9 — OFERTA */}
       <section id="oferta" className="bg-[#F7EEE8] py-20"><div className="mx-auto max-w-6xl px-5"><Reveal className="text-center"><p className="eyebrow">Escolha a melhor opção</p><h2 className="section-title">Comece com os guias ou leve a experiência completa.</h2><p className="section-copy mx-auto max-w-2xl">Como o checkout ainda não está disponível, o botão cadastra seu interesse para receber o link de lançamento.</p></Reveal><div className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
         <Reveal><article className="flex h-full flex-col rounded-3xl border border-[#E8D8D1] bg-[#FFFCFA] p-7 shadow-sm"><p className="text-xs font-black uppercase tracking-[.2em] text-[#9A7067]">Plano básico</p><h3 className="mt-3 text-2xl font-black">Kit Visual</h3><p className="mt-2 text-neutral-500">Para começar com os 20 guias principais.</p><div className="my-7"><span className="text-5xl font-black">R$ 17,90</span><p className="mt-1 text-sm text-neutral-500">pagamento único</p></div><div className="mb-8 space-y-3">{['20 guias visuais', 'Material 100% digital', 'Consulta pelo celular', 'Arquivos para impressão'].map((item) => <p key={item} className="flex items-center gap-2 font-semibold"><Check className="h-5 w-5 text-[#B65347]" />{item}</p>)}</div><CtaButton onClick={openModal} label="Quero o plano básico" /></article></Reveal>
-        <Reveal delay={120}><article className="relative flex h-full flex-col overflow-hidden rounded-3xl border-2 border-[#6F8170] bg-[#596B5A] p-7 text-white shadow-2xl"><div className="absolute right-0 top-0 rounded-bl-2xl bg-[#F3C8BF] px-4 py-2 text-xs font-black uppercase tracking-widest text-[#6B3932]">Mais completo</div><p className="text-xs font-black uppercase tracking-[.2em] text-[#F9DED8]">Plano completo</p><h3 className="mt-3 text-2xl font-black">Kit + 3 bônus</h3><p className="mt-2 text-[#E5DDD8]">Para aplicar e manter o sistema com mais apoio.</p><div className="my-7"><span className="text-5xl font-black">R$ 27,90</span><p className="mt-1 text-sm text-[#E5DDD8]">pagamento único</p></div><div className="mb-8 space-y-3">{['Tudo do plano básico', 'Rotina de 15 minutos', 'Guia de primeiros passos', 'Envolvendo a família'].map((item) => <p key={item} className="flex items-center gap-2 font-semibold"><Check className="h-5 w-5 text-[#F9DED8]" />{item}</p>)}</div><CtaButton onClick={openModal} label="Quero o plano completo" /></article></Reveal>
+        <Reveal delay={120}><article id="oferta-completa" className="relative flex h-full scroll-mt-8 flex-col overflow-hidden rounded-3xl border-2 border-[#6F8170] bg-[#596B5A] p-7 text-white shadow-2xl"><div className="absolute right-0 top-0 rounded-bl-2xl bg-[#F3C8BF] px-4 py-2 text-xs font-black uppercase tracking-widest text-[#6B3932]">Mais completo</div><p className="text-xs font-black uppercase tracking-[.2em] text-[#F9DED8]">Plano completo</p><h3 className="mt-3 text-2xl font-black">Kit + 3 bônus</h3><p className="mt-2 text-[#E5DDD8]">Para aplicar e manter o sistema com mais apoio.</p><div className="my-7"><span className="text-5xl font-black">R$ 27,90</span><p className="mt-1 text-sm text-[#E5DDD8]">pagamento único</p></div><div className="mb-8 space-y-3">{['Tudo do plano básico', 'Rotina de 15 minutos', 'Guia de primeiros passos', 'Envolvendo a família'].map((item) => <p key={item} className="flex items-center gap-2 font-semibold"><Check className="h-5 w-5 text-[#F9DED8]" />{item}</p>)}</div><CtaButton onClick={openModal} label="Quero o plano completo" /></article></Reveal>
       </div></div></section>
 
       {/* 10 — FAQ */}
