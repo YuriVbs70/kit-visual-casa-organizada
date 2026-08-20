@@ -1,18 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
 import {
   ArrowRight, Check, CheckCircle2, ChevronDown, CircleAlert,
-  Clock3, Eye, Facebook, Home, Instagram, Loader2, Lock, Map,
-  Package, Printer, Quote, ShoppingBag,
-  TimerReset, Users, X, Zap,
+  Clock3, Facebook, Home, Instagram, Loader2, Lock,
+  Printer, Quote, ShoppingBag,
+  X, Zap,
 } from 'lucide-react';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 
 type ModalState = 'idle' | 'submitting' | 'success' | 'error';
 
 const bonuses = [
-  { number: '01', title: 'Rotina de 15 minutos', description: 'Um plano visual para distribuir pequenas ações ao longo do dia e evitar o acúmulo.', icon: TimerReset },
-  { number: '02', title: 'Guia de primeiros passos', description: 'Um roteiro simples para escolher o primeiro ambiente e avançar sem tentar fazer tudo de uma vez.', icon: Zap },
-  { number: '03', title: 'Envolvendo a família', description: 'Orientações visuais para deixar claro onde cada item pertence e facilitar a participação de todos.', icon: Users },
+  { number: '01', title: 'Etiquetas “Cada coisa no seu lugar”', description: 'Etiquetas prontas para imprimir, recortar e identificar roupas, alimentos, documentos, produtos de limpeza e outras categorias, facilitando devolver cada item ao lugar certo', image: '/bonus-etiquetas.png', alt: 'Bônus de etiquetas para identificar e organizar os objetos da casa' },
+  { number: '02', title: 'Organização para casas pequenas', description: 'Estratégias visuais para aproveitar melhor armários, paredes, portas e espaços reduzidos, criando mais espaço sem precisar se desfazer do que é importante', image: '/bonus-casas-pequenas.png', alt: 'Bônus de organização para aproveitar melhor os espaços de casas pequenas' },
+  { number: '03', title: 'Checklist visual da casa organizada', description: 'Uma lista visual organizada por ambientes para marcar cada ação concluída, acompanhar seu progresso e manter a casa em ordem com menos esforço', image: '/bonus-checklist-visual.png', alt: 'Bônus de checklist visual com as etapas de organização da casa' },
 ];
 
 const demoImages = [
@@ -155,23 +155,26 @@ export default function App() {
         </div>
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-70"
-          style={{ backgroundImage: "url('/hero-casa-organizada-conforto.png')" }}
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#3E332F]/88 via-[#3E332F]/72 to-[#3E332F]/46"
+          className="pointer-events-none absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/hero-casa-organizada-oliva.png')" }}
         />
         <div className="pointer-events-none absolute right-0 top-20 z-[1] h-80 w-80 rounded-full bg-[#F3C8BF]/20 blur-[100px]" />
         <div className="relative z-10 mx-auto grid min-h-[720px] max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-[1.05fr_.95fr] md:py-20">
           <div className="contents md:order-2 md:block">
-            <div className="order-2 text-center">
-              <h1 className="mx-auto max-w-3xl text-4xl font-black leading-[1.06] sm:text-5xl md:text-6xl">20 mapas visuais com princípios japoneses que irão deixar sua <span className="text-[#F2A99D]">casa sempre arrumada.</span></h1>
-              <p className="mx-auto mt-6 max-w-xl text-lg font-medium leading-relaxed text-[#FFF3EC] drop-shadow-sm md:text-xl">Tenha mais tempo para aproveitar folgas e descansos em casa.</p>
+            <div className="order-1 text-center">
+              <h1
+                className="mx-auto max-w-3xl text-4xl font-extrabold leading-[1.08] tracking-[-0.025em] text-white sm:text-5xl md:text-6xl"
+                style={{
+                  fontFamily: "'Lora', Georgia, serif",
+                  textShadow: '-0.75px -0.75px 0 rgba(0,0,0,.7), 0.75px -0.75px 0 rgba(0,0,0,.7), -0.75px 0.75px 0 rgba(0,0,0,.7), 0.75px 0.75px 0 rgba(0,0,0,.7), 0 3px 10px rgba(0,0,0,.35)',
+                }}
+              >
+                20 mapas visuais com princípios japoneses que irão deixar sua casa sempre arrumada.
+              </h1>
             </div>
             <div className="order-3 flex justify-center md:mt-8"><CtaButton onClick={scrollToCompleteOffer} label="Quero acessar os mapas" variant="maps" /></div>
           </div>
-          <div className="order-1 relative mx-auto w-full max-w-md md:order-1">
+          <div className="order-2 relative mx-auto w-full max-w-md md:order-1">
             <img
               src="/kit-visual-casa-organizada.png"
               alt="Kit Visual Para Organizar Sua Casa com princípios japoneses, apresentado em computador, celular e guias impressos"
@@ -180,7 +183,7 @@ export default function App() {
             <div className="relative mt-4 grid grid-cols-4 overflow-hidden rounded-2xl border border-white/10 bg-[#153D2C] text-white shadow-2xl">
               {[
                 { icon: Printer, title: 'Pronto para imprimir ou acessar no celular.' },
-                { icon: Eye, title: 'Visual e intuitivo', text: 'Entenda rápido e aplique com facilidade.' },
+                { icon: Clock3, title: 'Tenha mais tempo para aproveitar folgas e descansos em casa.' },
                 { icon: Zap, title: 'Ferramenta prática', text: 'Economize tempo e energia nas decisões.' },
                 { icon: Home, title: 'Para toda a casa', text: 'Do quarto à cozinha, tudo no lugar.' },
               ].map((item) => (
@@ -197,7 +200,10 @@ export default function App() {
 
       {/* 2 — DEMONSTRATIVO */}
       <section className="bg-[#FFF8F3] py-20"><div className="mx-auto max-w-6xl px-5">
-        <Reveal className="text-center"><p className="eyebrow">Veja o material na prática</p><h2 className="section-title mx-auto max-w-3xl">Não é mais um conteúdo para assistir. É uma referência visual para usar.</h2><p className="section-copy mx-auto max-w-2xl">Cada página transforma uma decisão difícil em um caminho claro: olhar, escolher e aplicar no ambiente.</p></Reveal>
+        <Reveal className="text-center">
+          <h2 className="mx-auto max-w-4xl text-3xl font-black leading-tight text-[#352C29] md:text-5xl">Veja na prática um dos materiais que você vai receber.</h2>
+          <p className="section-copy mx-auto max-w-2xl">Cada página transforma uma decisão difícil em um caminho claro: olhar, escolher e aplicar no ambiente.</p>
+        </Reveal>
         <Reveal className="mt-12 overflow-hidden py-4">
           <div className="showcase-track flex w-max gap-5">
             {[...demoImages, ...demoImages].map((image, i) => (
@@ -210,25 +216,22 @@ export default function App() {
       </div></section>
 
       {/* 3 — BENEFÍCIOS */}
-      <section className="bg-[#3A302C] py-20 text-white"><div className="mx-auto max-w-6xl px-5"><Reveal className="text-center"><p className="eyebrow-light">O que muda na sua rotina</p><h2 className="section-title mx-auto max-w-3xl text-white">Um sistema criado para facilitar a organização — e a manutenção.</h2></Reveal><div className="mt-12 grid gap-px overflow-hidden rounded-2xl bg-white/10 sm:grid-cols-2 lg:grid-cols-4">{[
-        { icon: Clock3, title: 'Menos tempo decidindo', desc: 'Os fluxos mostram por onde começar e qual será o próximo passo.' },
-        { icon: Map, title: 'Um lugar para cada coisa', desc: 'Crie zonas claras para guardar e devolver cada item.' },
-        { icon: Package, title: 'Menos acúmulo', desc: 'Use critérios visuais para manter, doar ou descartar.' },
-        { icon: Home, title: 'Casa fácil de manter', desc: 'Transforme organização em pequenas ações recorrentes.' },
-      ].map((item) => <article key={item.title} className="bg-[#3A302C] p-7"><item.icon className="h-8 w-8 text-[#F2A99D]" /><h3 className="mt-6 text-lg font-black">{item.title}</h3><p className="mt-3 text-sm leading-relaxed text-[#D9C9C2]">{item.desc}</p></article>)}</div></div></section>
-
-      {/* 4 — URGÊNCIA */}
-      <section className="bg-red-600 px-5 py-16 text-center text-white"><Reveal><p className="text-xs font-black uppercase tracking-[.2em]">Você não precisa esperar a próxima faxina</p><h2 className="mx-auto mt-3 max-w-4xl text-3xl font-black leading-tight md:text-5xl">Comece pelo ambiente que mais pesa na sua rotina. Um guia, uma decisão, um passo de cada vez.</h2><button onClick={openModal} className="mt-8 inline-flex items-center gap-2 rounded-xl bg-neutral-950 px-7 py-4 text-sm font-extrabold uppercase tracking-wide text-white">Quero começar com clareza<ArrowRight className="h-5 w-5" /></button></Reveal></section>
+      <section className="bg-[#3A302C] py-20 text-white"><div className="mx-auto max-w-6xl px-5"><Reveal className="text-center"><h2 className="section-title mx-auto max-w-3xl text-white">Mapas criados para facilitar a organização e gastar menos tempo e energia.</h2></Reveal><div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{[
+        { emoji: '⏰', badge: '✨', title: 'Menos tempo decidindo' },
+        { emoji: '🏷️', badge: '✅', title: 'Um lugar para cada coisa' },
+        { emoji: '🧺', badge: '✨', title: 'Menos acúmulo' },
+        { emoji: '🏡', badge: '💚', title: 'Casa fácil de manter' },
+      ].map((item) => <article key={item.title} className="group rounded-3xl border border-white/10 bg-[#443733] p-6 shadow-lg transition duration-300 hover:-translate-y-1 hover:border-[#F2A99D]/40 hover:bg-[#4B3B36] hover:shadow-2xl"><div className="relative flex h-24 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#FFF8F3] via-[#F7E5DE] to-[#EBC4BA] shadow-inner"><div className="absolute -left-5 -top-5 h-16 w-16 rounded-full bg-white/60 blur-xl" /><span className="relative text-5xl drop-shadow-sm transition duration-300 group-hover:scale-110" role="img" aria-hidden="true">{item.emoji}</span><span className="absolute bottom-2.5 right-2.5 flex h-8 w-8 items-center justify-center rounded-full bg-[#153D2C] text-sm shadow-md" aria-hidden="true">{item.badge}</span></div><h3 className="mt-5 text-center text-lg font-black">{item.title}</h3></article>)}</div><Reveal className="text-center"><button onClick={openModal} className="mt-10 inline-flex items-center gap-2 rounded-xl bg-neutral-950 px-7 py-4 text-sm font-extrabold uppercase tracking-wide text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl">Quero começar com clareza<ArrowRight className="h-5 w-5" /></button></Reveal></div></section>
 
       {/* 5 — IDEAL PARA */}
       <section className="bg-[#F7EEE8] py-20"><div className="mx-auto max-w-6xl px-5">
-        <Reveal className="text-center"><h2 className="text-3xl font-black uppercase leading-tight text-red-600 md:text-4xl">Ideal para você que deseja:</h2></Reveal>
+        <Reveal className="text-center"><h2 className="text-3xl font-black uppercase leading-tight text-red-600 md:text-4xl">Ideal para você que:</h2></Reveal>
         <div className="mt-10 grid gap-5 md:grid-cols-3">{[
-          { icon: Map, title: 'Clareza para começar', text: 'Descubra qual ambiente precisa de atenção primeiro, sem tentar organizar a casa inteira de uma só vez.' },
-          { icon: Home, title: 'Um lugar para cada coisa', text: 'Crie posições lógicas para os objetos e evite que eles voltem a ficar espalhados pela casa.' },
-          { icon: Clock3, title: 'Mais tempo e leveza', text: 'Reduza o tempo gasto procurando, guardando e reorganizando os mesmos espaços todos os dias.' },
-        ].map((item, i) => <Reveal key={item.title} delay={i * 90}><article className="h-full rounded-2xl bg-white p-6 shadow-sm"><item.icon className="h-12 w-12 stroke-[1.8] text-neutral-950" /><h3 className="mt-6 text-lg font-black leading-tight text-red-600">{item.title}</h3><p className="mt-3 text-sm leading-relaxed text-neutral-600">{item.text}</p></article></Reveal>)}</div>
-        <Reveal className="mt-5"><article className="flex flex-col gap-5 rounded-2xl bg-white p-6 shadow-sm md:flex-row md:items-center md:p-8"><Users className="h-14 w-14 shrink-0 stroke-[1.8] text-neutral-950" /><div><h3 className="text-lg font-black leading-tight text-red-600">Uma organização prática para toda a casa</h3><p className="mt-3 leading-relaxed text-neutral-600">Crie uma rotina que outras pessoas consigam entender, organize usando o que já possui e consulte as instruções rapidamente pelo celular ou em páginas impressas.</p></div></article></Reveal>
+          { visual: <img src="/sticker-mulher-confusa.png" alt="Mulher em dúvida sobre por onde começar" className="h-16 w-16 object-contain" />, title: 'Já se sentiu perdida sem saber por onde começar a organizar', text: 'Ao abrir o mapa, você já saberá todos os passos' },
+          { visual: <img src="/sticker-meia-cadeira.png" alt="Meia deixada fora do lugar sobre uma cadeira" className="h-16 w-16 object-contain" />, title: 'Percebe objetos fora do lugar certo', text: 'Veja os melhores lugares para cada objeto' },
+          { visual: <img src="/sticker-mulher-relogio.png" alt="Mulher cansada olhando para o relógio" className="h-16 w-16 object-contain" />, title: 'Sente que passa muito tempo arrumando e, logo em seguida, já está tudo bagunçado', text: 'Com os mapas, você automatiza a organização e consegue terminar tudo mais rápido' },
+        ].map((item, i) => <Reveal key={item.title} delay={i * 90}><article className="h-full rounded-2xl bg-white p-6 shadow-sm"><div className="flex h-16 items-center">{item.visual}</div><h3 className="mt-6 text-lg font-black leading-tight text-red-600">{item.title}</h3><p className="mt-3 text-sm leading-relaxed text-neutral-600">{item.text}</p></article></Reveal>)}</div>
+        <Reveal className="mt-5"><article className="flex flex-col gap-5 rounded-2xl bg-white p-6 shadow-sm md:flex-row md:items-center md:p-8"><img src="/sticker-tarefas-desiguais.png" alt="Mulher limpando enquanto um homem está sentado" className="h-20 w-24 shrink-0 object-contain" /><div><h3 className="text-lg font-black leading-tight text-red-600">Percebe que faz a maior parte ou tudo sozinha</h3><p className="mt-3 leading-relaxed text-neutral-600">Mostre de maneira visual o que deve ser feito</p></div></article></Reveal>
       </div></section>
 
       {/* 6 — RELATOS */}
@@ -238,7 +241,7 @@ export default function App() {
       <section className="bg-[#3A302C] py-20 text-white"><div className="mx-auto max-w-6xl px-5"><Reveal className="text-center"><h2 className="section-title text-white">O que você irá receber</h2><p className="section-copy mx-auto max-w-2xl text-[#D9C9C2]">Um material separado por ambientes e decisões para você consultar exatamente quando precisar.</p></Reveal><Reveal className="mx-auto mt-12 max-w-5xl"><img src="/kit-visual-casa-organizada.png" alt="Mockup completo do Kit Visual para organizar a casa, com guias, computador, tablet e celular" loading="lazy" className="block h-auto w-full rounded-3xl" /></Reveal></div></section>
 
       {/* 8 — BÔNUS */}
-      <section className="bg-[#3A302C] pb-20 text-white"><div className="mx-auto max-w-6xl border-t border-white/10 px-5 pt-20"><Reveal className="text-center"><h2 className="section-title text-white">Além dos 20 guias, você recebe 3 bônus.</h2></Reveal><div className="mt-12 grid gap-5 md:grid-cols-3">{bonuses.map((bonus, i) => <Reveal key={bonus.title} delay={i * 100}><article className="h-full rounded-2xl border border-[#F2A99D]/20 bg-white/5 p-6"><div className="flex items-center justify-between"><div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#D9796B] text-white"><bonus.icon className="h-6 w-6" /></div><span className="text-4xl font-black text-white/10">{bonus.number}</span></div><h3 className="mt-7 text-xl font-black">{bonus.title}</h3><p className="mt-3 text-sm leading-relaxed text-[#D9C9C2]">{bonus.description}</p></article></Reveal>)}</div><Reveal className="mt-16"><div className="rounded-3xl border border-[#5C4942] bg-[#2D2522] p-5 shadow-2xl md:p-8"><h3 className="text-center text-xl font-black md:text-2xl">Pronto em 3 passos — receba e comece a organizar</h3><div className="mt-7 grid gap-4 md:grid-cols-3">{[
+      <section className="bg-[#3A302C] pb-20 text-white"><div className="mx-auto max-w-6xl border-t border-white/10 px-5 pt-20"><Reveal className="text-center"><h2 className="section-title text-white">Além dos 20 guias, você recebe 3 bônus.</h2></Reveal><div className="mt-12 grid gap-5 md:grid-cols-3">{bonuses.map((bonus, i) => <Reveal key={bonus.title} delay={i * 100}><article className="flex h-full flex-col overflow-hidden rounded-3xl border border-[#F2A99D]/20 bg-white/5 shadow-xl"><div className="relative overflow-hidden bg-[#FFF8F3]"><img src={bonus.image} alt={bonus.alt} loading="lazy" className="aspect-[4/5] w-full object-cover object-top transition duration-500 hover:scale-[1.02]" /><span className="absolute right-4 top-4 rounded-full bg-[#3A302C]/85 px-3 py-1.5 text-sm font-black text-white shadow-lg backdrop-blur-sm">Bônus {bonus.number}</span></div><div className="flex flex-1 flex-col p-6"><h3 className="text-xl font-black leading-tight">{bonus.title}</h3><p className="mt-3 text-sm leading-relaxed text-[#D9C9C2]">{bonus.description}</p></div></article></Reveal>)}</div><Reveal className="mt-16"><div className="rounded-3xl border border-[#5C4942] bg-[#2D2522] p-5 shadow-2xl md:p-8"><h3 className="text-center text-xl font-black md:text-2xl">Pronto em 3 passos — receba e comece a organizar</h3><div className="mt-7 grid gap-4 md:grid-cols-3">{[
         { step: 'Passo 1', title: 'Escolha seu plano', text: 'Compare as opções e escolha a que combina melhor com a rotina da sua casa.' },
         { step: 'Passo 2', title: 'Receba seu acesso', text: 'Após a confirmação da compra, receba o material digital diretamente no seu e-mail.' },
         { step: 'Passo 3', title: 'Aplique no seu ritmo', text: 'Acesse pelo celular ou imprima os mapas e comece pelo ambiente que mais precisa.' },
