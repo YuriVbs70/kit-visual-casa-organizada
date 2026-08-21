@@ -1,21 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @layer base {
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
   body { margin: 0; min-width: 320px; background: #fff8f3; font-family: 'Inter', system-ui, sans-serif; color: #352c29; }
   button, input { font: inherit; }
   ::selection { background: #f3c8bf; color: #352c29; }
 }
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
 @layer components {
   .eyebrow { @apply text-xs font-black uppercase tracking-[0.2em] text-[#B65347]; }
   .eyebrow-light { @apply text-xs font-black uppercase tracking-[0.2em] text-[#F2A99D]; }
-  .section-title { @apply mt-3 text-3xl font-black leading-tight text-neutral-900 md:text-4xl; }
-  .section-copy { @apply mt-4 leading-relaxed text-neutral-600; }
+  .section-title { @apply mt-3 text-3xl font-bold leading-tight text-neutral-900 md:text-4xl; font-family: 'Spectral', Georgia, serif; }
+  .section-copy { @apply mt-4 leading-relaxed text-neutral-700; }
   .form-input { @apply mt-1.5 w-full rounded-xl border border-[#E6D6CF] bg-[#FFFCFA] px-4 py-3 outline-none focus:border-[#D9796B] focus:ring-2 focus:ring-[#F7DED8]; }
 }
 
