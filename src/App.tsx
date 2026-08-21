@@ -85,6 +85,46 @@ function LeadModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   );
 }
 
+function SimplePackageUpsell({
+  open,
+  onClose,
+  onChooseComplete,
+  onKeepSimple,
+}: {
+  open: boolean;
+  onClose: () => void;
+  onChooseComplete: () => void;
+  onKeepSimple: () => void;
+}) {
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (event: KeyboardEvent) => event.key === 'Escape' && onClose();
+    window.addEventListener('keydown', onKeyDown);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [open, onClose]);
+
+  if (!open) return null;
+
+  return (
+    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="simple-package-upsell-title">
+      <button className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} aria-label="Fechar oferta" />
+      <div className="relative w-full max-w-md overflow-hidden rounded-3xl border border-[#E7D8CE] bg-[#FFFCF9] p-7 text-center shadow-2xl sm:p-9">
+        <button onClick={onClose} className="absolute right-4 top-4 rounded-full p-2 text-neutral-500 transition hover:bg-[#F5ECE6]" aria-label="Fechar"><X className="h-5 w-5" /></button>
+        <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-[#E8F6DF] text-[#315C36]"><ShoppingBag className="h-7 w-7" /></div>
+        <h2 id="simple-package-upsell-title" className="mx-auto max-w-sm text-2xl font-extrabold leading-tight text-[#332824]">Tem certeza de que não prefere o pacote completo?</h2>
+        <img src="/pacote-completo.png" alt="Pacote completo com os 20 guias visuais e os três bônus" className="mt-5 h-44 w-full rounded-2xl object-cover object-center shadow-sm" />
+        <p className="mt-4 leading-relaxed text-[#6D5A52]">Se levar o kit completo, faremos o preço de <strong className="text-[#315C36]">R$ 22,90</strong> — só mais <strong>R$ 5</strong> para levar o pacote completo!</p>
+        <button onClick={onChooseComplete} className="mt-7 flex w-full items-center justify-center gap-2 rounded-xl bg-[#B8EFA4] px-6 py-4 font-extrabold text-[#17391F] shadow-[0_10px_32px_rgba(184,239,164,.42)] ring-1 ring-white/50 transition hover:bg-[#A8E68F] active:scale-[.98]">Quero levar o pacote completo<ArrowRight className="h-5 w-5" /></button>
+        <button onClick={onKeepSimple} className="mt-4 bg-transparent px-3 py-2 text-sm text-neutral-500 underline-offset-4 transition hover:text-neutral-700 hover:underline">Não irei aproveitar essa oportunidade</button>
+      </div>
+    </div>
+  );
+}
+
 function CtaButton({ onClick, label = 'Quero conhecer o kit', variant = 'default' }: { onClick: () => void; label?: string; variant?: 'default' | 'maps' }) {
   const colors = variant === 'maps'
     ? 'bg-[#B8EFA4] text-[#17391F] shadow-[0_10px_32px_rgba(184,239,164,.42)] ring-1 ring-white/40 hover:bg-[#A8E68F]'
@@ -135,12 +175,27 @@ function useCountdown(durationInSeconds: number) {
 
 export default function App() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [simplePackageUpsellOpen, setSimplePackageUpsellOpen] = useState(false);
   const countdown = useCountdown(17 * 60);
-  const openModal = () => setModalOpen(true);
+  const goToCheckout = (url: string) => window.location.assign(url);
+  const chooseDiscountedCompletePackage = () => {
+    setSimplePackageUpsellOpen(false);
+    goToCheckout('https://pay.lowify.com.br/checkout.php?product_id=MHiCNV');
+  };
+  const keepSimplePackage = () => {
+    setSimplePackageUpsellOpen(false);
+    goToCheckout('https://pay.lowify.com.br/checkout?product_id=oSCTzK');
+  };
   const scrollToCompleteOffer = () => document.getElementById('oferta-completa')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   return (
     <div className="min-h-screen bg-white text-neutral-900 antialiased">
       <LeadModal open={modalOpen} onClose={() => setModalOpen(false)} />
+      <SimplePackageUpsell
+        open={simplePackageUpsellOpen}
+        onClose={() => setSimplePackageUpsellOpen(false)}
+        onChooseComplete={chooseDiscountedCompletePackage}
+        onKeepSimple={keepSimplePackage}
+      />
       <StickyCta onClick={scrollToCompleteOffer} />
 
       {/* 1 — VENDA DIRETA */}
@@ -221,7 +276,7 @@ export default function App() {
         { emoji: '🏷️', badge: '✅', title: 'Um lugar para cada coisa' },
         { emoji: '🧺', badge: '✨', title: 'Menos acúmulo' },
         { emoji: '🏡', badge: '💚', title: 'Casa fácil de manter' },
-      ].map((item) => <article key={item.title} className="group rounded-3xl border border-white/10 bg-[#443733] p-6 shadow-lg transition duration-300 hover:-translate-y-1 hover:border-[#F2A99D]/40 hover:bg-[#4B3B36] hover:shadow-2xl"><div className="relative flex h-24 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#FFF8F3] via-[#F7E5DE] to-[#EBC4BA] shadow-inner"><div className="absolute -left-5 -top-5 h-16 w-16 rounded-full bg-white/60 blur-xl" /><span className="relative text-5xl drop-shadow-sm transition duration-300 group-hover:scale-110" role="img" aria-hidden="true">{item.emoji}</span><span className="absolute bottom-2.5 right-2.5 flex h-8 w-8 items-center justify-center rounded-full bg-[#153D2C] text-sm shadow-md" aria-hidden="true">{item.badge}</span></div><h3 className="mt-5 text-center text-lg font-black">{item.title}</h3></article>)}</div><Reveal className="text-center"><button onClick={openModal} className="mt-10 inline-flex items-center gap-2 rounded-xl bg-neutral-950 px-7 py-4 text-sm font-extrabold uppercase tracking-wide text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl">Quero começar com clareza<ArrowRight className="h-5 w-5" /></button></Reveal></div></section>
+      ].map((item) => <article key={item.title} className="group rounded-3xl border border-white/10 bg-[#443733] p-6 shadow-lg transition duration-300 hover:-translate-y-1 hover:border-[#F2A99D]/40 hover:bg-[#4B3B36] hover:shadow-2xl"><div className="relative flex h-24 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#FFF8F3] via-[#F7E5DE] to-[#EBC4BA] shadow-inner"><div className="absolute -left-5 -top-5 h-16 w-16 rounded-full bg-white/60 blur-xl" /><span className="relative text-5xl drop-shadow-sm transition duration-300 group-hover:scale-110" role="img" aria-hidden="true">{item.emoji}</span><span className="absolute bottom-2.5 right-2.5 flex h-8 w-8 items-center justify-center rounded-full bg-[#153D2C] text-sm shadow-md" aria-hidden="true">{item.badge}</span></div><h3 className="mt-5 text-center text-lg font-black">{item.title}</h3></article>)}</div><Reveal className="mt-10 text-center"><CtaButton onClick={scrollToCompleteOffer} label="Quero acessar os mapas" variant="maps" /></Reveal></div></section>
 
       {/* 5 — IDEAL PARA */}
       <section className="bg-[#F7EEE8] py-20"><div className="mx-auto max-w-6xl px-5">
@@ -238,33 +293,37 @@ export default function App() {
       <section className="bg-[#FFF8F3] py-20"><div className="mx-auto max-w-6xl px-5"><Reveal className="text-center"><p className="eyebrow">Relatos de quem já aplicou</p><h2 className="section-title mx-auto max-w-3xl">Casas mais leves, rotinas mais tranquilas.</h2><p className="section-copy mx-auto max-w-2xl">Experiências compartilhadas por clientes que usaram os mapas na rotina de casa.</p></Reveal><div className="mt-12 grid gap-5 md:grid-cols-2">{testimonials.map((testimonial, i) => <Reveal key={testimonial.name} delay={(i % 2) * 100}><article className="flex h-full flex-col rounded-3xl border border-[#E8D8D1] bg-white p-6 shadow-sm md:p-7"><div className="flex items-center gap-4"><img src={testimonial.photo} alt={`Foto de ${testimonial.name}`} loading="lazy" className="h-16 w-16 shrink-0 rounded-full object-cover ring-4 ring-[#F7EEE8]" /><div><h3 className="text-lg font-black text-[#3E332F]">{testimonial.name}</h3><p className="mt-1 text-sm font-semibold text-[#9A7067]">{testimonial.location}</p></div></div><div className="mt-6 flex flex-1 gap-3"><Quote className="h-7 w-7 shrink-0 fill-[#F3C8BF] text-[#D9796B]" /><p className="text-lg font-semibold leading-relaxed text-[#4A3D38]">“{testimonial.comment}”</p></div><div className="mt-6 flex items-center gap-2 border-t border-[#F0E2DC] pt-4 text-sm font-bold text-[#8C6A62]">{testimonial.source === 'Instagram' ? <Instagram className="h-5 w-5 text-[#C85C78]" /> : <Facebook className="h-5 w-5 text-[#5576A8]" />}Comentário feito no {testimonial.source}</div></article></Reveal>)}</div></div></section>
 
       {/* 7 — PRODUTO PRINCIPAL */}
-      <section className="bg-[#3A302C] py-20 text-white"><div className="mx-auto max-w-6xl px-5"><Reveal className="text-center"><h2 className="section-title text-white">O que você irá receber</h2><p className="section-copy mx-auto max-w-2xl text-[#D9C9C2]">Um material separado por ambientes e decisões para você consultar exatamente quando precisar.</p></Reveal><Reveal className="mx-auto mt-12 max-w-5xl"><img src="/kit-visual-casa-organizada.png" alt="Mockup completo do Kit Visual para organizar a casa, com guias, computador, tablet e celular" loading="lazy" className="block h-auto w-full rounded-3xl" /></Reveal></div></section>
+      <section className="bg-[#3A302C] py-20 text-white"><div className="mx-auto max-w-6xl px-5"><Reveal className="text-center"><h2 className="section-title text-white">O que você irá receber</h2><p className="section-copy mx-auto max-w-3xl text-[#D9C9C2]">Um pacote com os 20 guias visuais e instruções de como usá-los, prontos para acessar pelo celular ou imprimir. Se você optar pela impressão, o material já foi preparado para encadernar ou deixar cada mapa separado no local onde será utilizado — por exemplo, na parede do quarto do seu filho ou na cozinha — para que você e todos da casa possam ver o que precisa ser feito.</p></Reveal><Reveal className="mx-auto mt-12 max-w-5xl"><img src="/kit-visual-casa-organizada.png" alt="Mockup completo do Kit Visual para organizar a casa, com guias, computador, tablet e celular" loading="lazy" className="block h-auto w-full rounded-3xl" /></Reveal></div></section>
 
       {/* 8 — BÔNUS */}
       <section className="bg-[#3A302C] pb-20 text-white"><div className="mx-auto max-w-6xl border-t border-white/10 px-5 pt-20"><Reveal className="text-center"><h2 className="section-title text-white">Além dos 20 guias, você recebe 3 bônus.</h2></Reveal><div className="mt-12 grid gap-5 md:grid-cols-3">{bonuses.map((bonus, i) => <Reveal key={bonus.title} delay={i * 100}><article className="flex h-full flex-col overflow-hidden rounded-3xl border border-[#F2A99D]/20 bg-white/5 shadow-xl"><div className="relative overflow-hidden bg-[#FFF8F3]"><img src={bonus.image} alt={bonus.alt} loading="lazy" className="aspect-[4/5] w-full object-cover object-top transition duration-500 hover:scale-[1.02]" /><span className="absolute right-4 top-4 rounded-full bg-[#3A302C]/85 px-3 py-1.5 text-sm font-black text-white shadow-lg backdrop-blur-sm">Bônus {bonus.number}</span></div><div className="flex flex-1 flex-col p-6"><h3 className="text-xl font-black leading-tight">{bonus.title}</h3><p className="mt-3 text-sm leading-relaxed text-[#D9C9C2]">{bonus.description}</p></div></article></Reveal>)}</div><Reveal className="mt-16"><div className="rounded-3xl border border-[#5C4942] bg-[#2D2522] p-5 shadow-2xl md:p-8"><h3 className="text-center text-xl font-black md:text-2xl">Pronto em 3 passos — receba e comece a organizar</h3><div className="mt-7 grid gap-4 md:grid-cols-3">{[
-        { step: 'Passo 1', title: 'Escolha seu plano', text: 'Compare as opções e escolha a que combina melhor com a rotina da sua casa.' },
-        { step: 'Passo 2', title: 'Receba seu acesso', text: 'Após a confirmação da compra, receba o material digital diretamente no seu e-mail.' },
+        { step: 'Passo 1', title: 'Escolha seu pacote', text: 'Compare as opções e escolha a que combina melhor com a rotina da sua casa.' },
+        { step: 'Passo 2', title: 'Receba seu acesso', text: 'Após a confirmação da compra, receba o material digital diretamente no seu e-mail ou WhatsApp, de acordo com o que você preferir.' },
         { step: 'Passo 3', title: 'Aplique no seu ritmo', text: 'Acesse pelo celular ou imprima os mapas e comece pelo ambiente que mais precisa.' },
       ].map((item) => <article key={item.step} className="rounded-2xl border border-[#5C4942] bg-[#221C19] p-5"><span className="inline-flex rounded-full bg-[#F3D2C8] px-5 py-1.5 text-[10px] font-black uppercase tracking-widest text-[#6B3932]">{item.step}</span><h4 className="mt-5 font-black text-white">{item.title}</h4><p className="mt-3 text-sm leading-relaxed text-[#CDBCB4]">{item.text}</p></article>)}</div></div></Reveal></div></section>
 
       {/* 9 — OFERTA */}
-      <section id="oferta" className="bg-[#F7EEE8] py-20"><div className="mx-auto max-w-6xl px-5"><Reveal className="text-center"><p className="eyebrow">Escolha a melhor opção</p><h2 className="section-title">Comece com os guias ou leve a experiência completa.</h2><p className="section-copy mx-auto max-w-2xl">Como o checkout ainda não está disponível, o botão cadastra seu interesse para receber o link de lançamento.</p></Reveal><div className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
-        <Reveal><article className="flex h-full flex-col rounded-3xl border border-[#E8D8D1] bg-[#FFFCFA] p-7 shadow-sm"><p className="text-xs font-black uppercase tracking-[.2em] text-[#9A7067]">Plano básico</p><h3 className="mt-3 text-2xl font-black">Kit Visual</h3><p className="mt-2 text-neutral-500">Para começar com os 20 guias principais.</p><div className="my-7"><span className="text-5xl font-black">R$ 17,90</span><p className="mt-1 text-sm text-neutral-500">pagamento único</p></div><div className="mb-8 space-y-3">{['20 guias visuais', 'Material 100% digital', 'Consulta pelo celular', 'Arquivos para impressão'].map((item) => <p key={item} className="flex items-center gap-2 font-semibold"><Check className="h-5 w-5 text-[#B65347]" />{item}</p>)}</div><CtaButton onClick={openModal} label="Quero o plano básico" variant="maps" /></article></Reveal>
-        <Reveal delay={120}><article id="oferta-completa" className="relative flex h-full scroll-mt-8 flex-col overflow-hidden rounded-3xl border-2 border-[#6F8170] bg-[#596B5A] p-7 text-white shadow-2xl"><div className="absolute right-0 top-0 rounded-bl-2xl bg-[#F3C8BF] px-4 py-2 text-xs font-black uppercase tracking-widest text-[#6B3932]">Mais completo</div><p className="text-xs font-black uppercase tracking-[.2em] text-[#F9DED8]">Plano completo</p><h3 className="mt-3 text-2xl font-black">Kit + 3 bônus</h3><p className="mt-2 text-[#E5DDD8]">Para aplicar e manter o sistema com mais apoio.</p><div className="my-7"><span className="text-5xl font-black">R$ 27,90</span><p className="mt-1 text-sm text-[#E5DDD8]">pagamento único</p></div><div className="mb-8 space-y-3">{['Tudo do plano básico', 'Rotina de 15 minutos', 'Guia de primeiros passos', 'Envolvendo a família'].map((item) => <p key={item} className="flex items-center gap-2 font-semibold"><Check className="h-5 w-5 text-[#F9DED8]" />{item}</p>)}</div><CtaButton onClick={openModal} label="Quero o plano completo" variant="maps" /></article></Reveal>
+      <section id="oferta" className="bg-[#F7EEE8] py-20"><div className="mx-auto max-w-6xl px-5"><Reveal className="text-center"><p className="eyebrow">Escolha a melhor opção</p><h2 className="section-title">Eu poderia facilmente cobrar por isso...</h2><div className="mx-auto mt-8 max-w-xl overflow-hidden rounded-3xl border border-[#E4CFC7] bg-[#FFFCFA] text-left shadow-lg"><div className="space-y-3 p-6 md:p-7">{[
+        ['20 Guias visuais', 'R$ 32'],
+        ['Etiquetas', 'R$ 28'],
+        ['Organização para casas pequenas', 'R$ 19'],
+        ['Checklist visual', 'R$ 14'],
+      ].map(([item, price]) => <div key={item} className="flex items-center justify-between gap-4 border-b border-[#F0E2DC] pb-3 text-sm font-semibold text-[#554641] last:border-0 last:pb-0 md:text-base"><span>{item}</span><span className="shrink-0 font-black text-[#8F5B52]">{price}</span></div>)}</div><div className="flex items-center justify-between bg-[#3A302C] px-6 py-5 text-white md:px-7"><span className="text-lg font-black">Total</span><span className="text-2xl font-black line-through decoration-[#F2A99D] decoration-2">R$ 93</span></div></div><div className="mx-auto mt-8 max-w-3xl rounded-2xl bg-[#F3C8BF] px-5 py-5 text-[#5E342E] shadow-sm"><p className="text-xl font-black leading-tight md:text-2xl">Mas, somente nesta oportunidade, você pode levar por:</p><ChevronDown className="mx-auto mt-3 h-7 w-7 animate-bounce" /></div></Reveal><div className="mx-auto mt-10 grid max-w-4xl gap-6 md:grid-cols-2">
+        <Reveal><article className="flex h-full flex-col rounded-3xl border border-[#E8D8D1] bg-[#FFFCFA] p-7 shadow-sm"><p className="text-xs font-black uppercase tracking-[.2em] text-[#9A7067]">Pacote simples</p><h3 className="mt-3 text-2xl font-black">Kit Visual</h3><p className="mt-2 text-neutral-500">Para começar com os 20 guias principais.</p><div className="my-7"><div className="flex flex-wrap items-end gap-x-4 gap-y-2"><span className="text-6xl font-black leading-none text-[#B65347] line-through decoration-[#8F3F36] decoration-[3px]">R$ 32</span><span className="pb-1 text-sm font-semibold text-neutral-400">44% de desconto</span></div><p className="mt-4 text-xs font-bold uppercase tracking-widest text-[#9A7067]">Hoje por apenas</p><span className="mt-1 block text-4xl font-black text-[#153D2C]">R$ 17,90</span><p className="mt-1 text-sm text-neutral-500">pagamento único</p></div><div className="mb-8 space-y-3">{['20 guias visuais'].map((item) => <p key={item} className="flex items-center gap-2 font-semibold"><Check className="h-5 w-5 text-[#B65347]" />{item}</p>)}</div><CtaButton onClick={() => setSimplePackageUpsellOpen(true)} label="Quero o pacote simples" variant="maps" /></article></Reveal>
+        <Reveal delay={120}><article id="oferta-completa" className="relative flex h-full scroll-mt-8 flex-col overflow-hidden rounded-3xl border-2 border-[#C8AA86] bg-[#F2E6D5] p-7 text-[#3F332A] shadow-2xl"><div className="absolute right-0 top-0 rounded-bl-2xl bg-[#5F765F] px-4 py-2 text-xs font-black uppercase tracking-widest text-white">Mais completo</div><p className="text-xs font-black uppercase tracking-[.2em] text-[#7B5A40]">Pacote completo</p><h3 className="mt-3 text-2xl font-black">Kit + 3 bônus</h3><p className="mt-2 text-[#6B5A50]">Para aplicar e manter o sistema com mais apoio.</p><img src="/pacote-completo.png" alt="Pacote completo com os 20 guias visuais e os três bônus" className="mt-5 aspect-[4/3] w-full rounded-2xl object-cover object-center shadow-md" /><div className="my-7"><div className="flex flex-wrap items-end gap-x-4 gap-y-2"><span className="text-6xl font-black leading-none text-[#B65347] line-through decoration-[#8F3F36] decoration-[3px]">R$ 93</span><span className="pb-1 text-sm font-semibold text-neutral-400">70% de desconto</span></div><p className="mt-4 text-xs font-bold uppercase tracking-widest text-[#7B6454]">Hoje por apenas</p><span className="mt-1 block text-4xl font-black text-[#153D2C]">R$ 27,90</span><p className="mt-1 text-sm text-[#75675E]">pagamento único</p></div><div className="mb-8 space-y-3">{['Todos os 20 guias', 'Bônus 1 — Etiquetas “Cada coisa no seu lugar”', 'Bônus 2 — Organização para casas pequenas', 'Bônus 3 — Checklist visual da casa organizada'].map((item) => <p key={item} className="flex items-center gap-2 font-semibold"><Check className="h-5 w-5 shrink-0 text-[#5F765F]" />{item}</p>)}</div><CtaButton onClick={() => goToCheckout('https://pay.lowify.com.br/checkout?product_id=EQIN0e')} label="Quero o pacote completo" variant="maps" /></article></Reveal>
       </div></div></section>
 
       {/* 10 — FAQ */}
-      <section className="bg-[#FFF8F3] py-20"><div className="mx-auto max-w-3xl px-5"><Reveal className="text-center"><p className="eyebrow">Perguntas frequentes</p><h2 className="section-title">Antes de escolher seu plano</h2></Reveal><div className="mt-10 space-y-3">{[
+      <section className="bg-[#FFF8F3] py-20"><div className="mx-auto max-w-3xl px-5"><Reveal className="text-center"><p className="eyebrow">Perguntas frequentes</p><h2 className="section-title">Antes de escolher seu pacote</h2></Reveal><div className="mt-10 space-y-3">{[
         { q: 'O material funciona em casas pequenas?', a: 'Sim. Os princípios de classificação, definição de lugares e manutenção podem ser adaptados a casas e apartamentos de diferentes tamanhos.' },
         { q: 'Preciso comprar organizadores?', a: 'Não. A proposta é avaliar e organizar primeiro o que você já possui. Depois, você decide se algum organizador realmente é necessário.' },
-        { q: 'Como vou receber o kit?', a: 'O kit será digital. Quando o checkout estiver pronto, os detalhes de acesso e entrega serão informados claramente antes da compra.' },
+        { q: 'Como vou receber o kit?', a: 'O kit é digital. Após a confirmação da compra, você receberá o acesso por e-mail ou WhatsApp, de acordo com a sua preferência.' },
         { q: 'Posso usar pelo celular?', a: 'Sim. Os guias foram pensados para consulta digital e também poderão ser impressos.' },
-        { q: 'Qual é a diferença entre os planos?', a: 'O básico inclui os 20 guias. O completo reúne os mesmos guias e mais os três bônus apresentados nesta página.' },
-        { q: 'O checkout já está disponível?', a: 'Ainda não. Por enquanto, entre na lista de interesse para receber o aviso assim que a compra for liberada.' },
+        { q: 'Qual é a diferença entre os pacotes?', a: 'O pacote simples inclui os 20 guias. O pacote completo reúne os mesmos guias e mais os três bônus apresentados nesta página.' },
       ].map((item) => <FaqItem key={item.q} question={item.q} answer={item.a} />)}</div></div></section>
 
       {/* 11 — RODAPÉ */}
-      <footer className="bg-[#2D2522] py-12 text-white"><div className="mx-auto max-w-6xl px-5"><div className="flex flex-col items-center justify-between gap-6 border-b border-white/10 pb-8 md:flex-row"><div className="flex items-center gap-3"><div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#D9796B] text-white"><Home className="h-5 w-5" /></div><div><p className="font-black">Casa em Ordem</p><p className="text-xs text-[#BFAEA7]">Kit visual de organização</p></div></div><button onClick={openModal} className="flex items-center gap-2 text-sm font-bold text-[#F2A99D]">Entrar na lista de interesse<ArrowRight className="h-4 w-4" /></button></div><div className="flex flex-col items-center justify-between gap-3 pt-8 text-center text-xs text-[#9F8C84] md:flex-row md:text-left"><p>© 2026 Casa em Ordem. Todos os direitos reservados.</p><p>Resultados variam conforme a rotina e a aplicação do material.</p></div></div></footer>
+      <footer className="bg-[#2D2522] py-12 text-white"><div className="mx-auto max-w-6xl px-5"><div className="grid gap-10 border-b border-white/10 pb-10 md:grid-cols-[1.3fr_1fr]"><div><p className="text-2xl font-black">Casa Organizada</p><p className="mt-3 max-w-xl text-sm leading-relaxed text-[#CDBCB4]">Soluções visuais para ajudar famílias a organizar cada ambiente, dividir melhor as tarefas e manter uma rotina mais leve.</p></div><div><p className="text-sm font-black uppercase tracking-[.18em] text-[#F2A99D]">Informações</p><div className="mt-4 space-y-2 text-sm text-[#CDBCB4]"><p>Produto 100% digital</p><p>Acesso pelo celular ou material para impressão</p><p>Entrega por e-mail ou WhatsApp</p><p>Atendimento e suporte após a compra</p></div></div></div><div className="flex flex-col items-center justify-between gap-3 pt-8 text-center text-xs text-[#9F8C84] md:flex-row md:text-left"><p>© 2026 Casa Organizada. Todos os direitos reservados.</p><p>Resultados variam conforme a rotina e a aplicação do material.</p></div></div></footer>
     </div>
   );
 }
