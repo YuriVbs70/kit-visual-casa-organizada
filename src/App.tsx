@@ -220,7 +220,7 @@ export default function App() {
               <h1
                 className="mx-auto max-w-3xl text-4xl font-extrabold leading-[1.06] tracking-[-0.02em] text-white sm:text-5xl md:text-6xl"
                 style={{
-                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontFamily: "'Spectral', Georgia, serif",
                   textShadow: '-0.75px -0.75px 0 rgba(0,0,0,.7), 0.75px -0.75px 0 rgba(0,0,0,.7), -0.75px 0.75px 0 rgba(0,0,0,.7), 0.75px 0.75px 0 rgba(0,0,0,.7), 0 3px 10px rgba(0,0,0,.35)',
                 }}
               >
