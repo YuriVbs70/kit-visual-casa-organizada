@@ -145,12 +145,6 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
   return <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white"><button className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left" onClick={() => setOpen(!open)} aria-expanded={open}><span className="font-bold">{question}</span><ChevronDown className={`h-5 w-5 shrink-0 transition ${open ? 'rotate-180' : ''}`} /></button><div className={`grid transition-all duration-300 ${open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}><div className="overflow-hidden"><p className="px-5 pb-5 leading-relaxed text-neutral-600">{answer}</p></div></div></div>;
 }
 
-function StickyCta({ onClick }: { onClick: () => void }) {
-  const [visible, setVisible] = useState(false);
-  useEffect(() => { const onScroll = () => setVisible(window.scrollY > 650); window.addEventListener('scroll', onScroll, { passive: true }); return () => window.removeEventListener('scroll', onScroll); }, []);
-  return <div className={`fixed inset-x-0 bottom-0 z-50 border-t border-[#5C4942] bg-[#3A302C]/95 p-3 backdrop-blur transition-transform md:hidden ${visible ? 'translate-y-0' : 'translate-y-full'}`}><button onClick={onClick} className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#B8EFA4] px-5 py-3.5 font-extrabold text-[#17391F] shadow-[0_8px_24px_rgba(184,239,164,.38)] ring-1 ring-white/40">Quero acessar os mapas<ArrowRight className="h-5 w-5" /></button></div>;
-}
-
 function useCountdown(durationInSeconds: number) {
   const [secondsLeft, setSecondsLeft] = useState(durationInSeconds);
 
@@ -191,8 +185,6 @@ export default function App() {
         onChooseComplete={chooseDiscountedCompletePackage}
         onKeepSimple={keepSimplePackage}
       />
-      <StickyCta onClick={scrollToCompleteOffer} />
-
       {/* 1 — VENDA DIRETA */}
       <header className="relative overflow-hidden bg-[#3E332F] text-white">
         <div className="relative z-20 border-b border-red-800 bg-red-600 px-4 py-3 text-white">
