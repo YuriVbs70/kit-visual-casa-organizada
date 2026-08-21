@@ -5,7 +5,7 @@ import {
   ChevronDown,
   Clock3,
   Facebook,
-  Home,
+  Chrome as Home,
   Instagram,
   Printer,
   Quote,
@@ -258,28 +258,6 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
   );
 }
 
-function StickyCta({ onClick }: { onClick: () => void }) {
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 650);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-  return (
-    <div
-      className={`fixed inset-x-0 bottom-0 z-50 border-t border-[#5C4942] bg-[#3A302C]/95 p-3 backdrop-blur transition-transform md:hidden ${visible ? "translate-y-0" : "translate-y-full"}`}
-    >
-      <button
-        onClick={onClick}
-        className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#B8EFA4] px-5 py-3.5 font-extrabold text-[#17391F] shadow-[0_8px_24px_rgba(184,239,164,.38)] ring-1 ring-white/40"
-      >
-        Quero acessar os mapas
-        <ArrowRight className="h-5 w-5" />
-      </button>
-    </div>
-  );
-}
-
 function useCountdown(durationInSeconds: number) {
   const [secondsLeft, setSecondsLeft] = useState(durationInSeconds);
 
@@ -323,8 +301,6 @@ export default function App() {
         onChooseComplete={chooseDiscountedCompletePackage}
         onKeepSimple={keepSimplePackage}
       />
-      <StickyCta onClick={scrollToCompleteOffer} />
-
       {/* 1 — VENDA DIRETA */}
       <header className="relative overflow-hidden bg-[#3E332F] text-white">
         <div className="relative z-20 border-b border-red-800 bg-red-600 px-4 py-3 text-white">
@@ -351,16 +327,18 @@ export default function App() {
           alt=""
           className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
         />
-        <div className="pointer-events-none absolute right-0 top-20 z-[1] h-80 w-80 rounded-full bg-[#F3C8BF]/20 blur-[100px]" />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#3E332F]/80 via-[#3E332F]/45 to-transparent"
+        />
+        <div className="pointer-events-none absolute right-0 top-20 z-[1] h-80 w-80 rounded-full bg-[#F3C8BF]/15 blur-[120px]" />
         <div className="relative z-10 mx-auto grid min-h-[720px] max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-[1.05fr_.95fr] md:py-20">
           <div className="contents md:order-2 md:block">
             <div className="order-1 text-center">
               <h1
-                className="mx-auto max-w-3xl text-4xl font-extrabold leading-[1.08] tracking-[-0.025em] text-white sm:text-5xl md:text-6xl"
+                className="mx-auto max-w-3xl text-4xl font-bold leading-[1.1] tracking-[-0.01em] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] sm:text-5xl md:text-6xl"
                 style={{
-                  fontFamily: "'Lora', Georgia, serif",
-                  textShadow:
-                    "-0.75px -0.75px 0 rgba(0,0,0,.7), 0.75px -0.75px 0 rgba(0,0,0,.7), -0.75px 0.75px 0 rgba(0,0,0,.7), 0.75px 0.75px 0 rgba(0,0,0,.7), 0 3px 10px rgba(0,0,0,.35)",
+                  fontFamily: "'Spectral', Georgia, serif",
                 }}
               >
                 20 mapas visuais com princípios japoneses que irão deixar sua
@@ -435,7 +413,10 @@ export default function App() {
       <section className="bg-[#FFF8F3] py-20">
         <div className="mx-auto max-w-6xl px-5">
           <Reveal className="text-center">
-            <h2 className="mx-auto max-w-4xl text-3xl font-black leading-tight text-[#352C29] md:text-5xl">
+            <h2
+              className="mx-auto max-w-4xl text-3xl font-bold leading-tight text-[#352C29] md:text-5xl"
+              style={{ fontFamily: "'Spectral', Georgia, serif" }}
+            >
               Veja na prática um dos materiais que você vai receber.
             </h2>
             <p className="section-copy mx-auto max-w-2xl">
@@ -521,7 +502,10 @@ export default function App() {
       <section className="bg-[#F7EEE8] py-20">
         <div className="mx-auto max-w-6xl px-5">
           <Reveal className="text-center">
-            <h2 className="text-3xl font-black uppercase leading-tight text-red-600 md:text-4xl">
+            <h2
+              className="text-3xl font-bold uppercase leading-tight text-red-600 md:text-4xl"
+              style={{ fontFamily: "'Spectral', Georgia, serif" }}
+            >
               Ideal para você que:
             </h2>
           </Reveal>
@@ -666,7 +650,7 @@ export default function App() {
         <div className="mx-auto max-w-6xl px-5">
           <Reveal className="text-center">
             <h2 className="section-title text-white">O que você irá receber</h2>
-            <p className="section-copy mx-auto max-w-3xl text-[#D9C9C2]">
+            <p className="section-copy mx-auto max-w-3xl text-[#E8D5CE]">
               Um pacote com os 20 guias visuais e instruções de como usá-los,
               prontos para acessar pelo celular ou imprimir. Se você optar pela
               impressão, o material já foi preparado para encadernar ou deixar
@@ -719,7 +703,7 @@ export default function App() {
                     <h3 className="text-xl font-black leading-tight">
                       {bonus.title}
                     </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-[#D9C9C2]">
+                    <p className="mt-3 text-sm leading-relaxed text-[#E8D5CE]">
                       {bonus.description}
                     </p>
                   </div>
@@ -729,7 +713,10 @@ export default function App() {
           </div>
           <Reveal className="mt-16">
             <div className="rounded-3xl border border-[#5C4942] bg-[#2D2522] p-5 shadow-2xl md:p-8">
-              <h3 className="text-center text-xl font-black md:text-2xl">
+              <h3
+                className="text-center text-xl font-bold md:text-2xl"
+                style={{ fontFamily: "'Spectral', Georgia, serif" }}
+              >
                 Pronto em 3 passos — receba e comece a organizar
               </h3>
               <div className="mt-7 grid gap-4 md:grid-cols-3">
@@ -758,7 +745,7 @@ export default function App() {
                       {item.step}
                     </span>
                     <h4 className="mt-5 font-black text-white">{item.title}</h4>
-                    <p className="mt-3 text-sm leading-relaxed text-[#CDBCB4]">
+                    <p className="mt-3 text-sm leading-relaxed text-[#E0D0C8]">
                       {item.text}
                     </p>
                   </article>
@@ -804,7 +791,10 @@ export default function App() {
               </div>
             </div>
             <div className="mx-auto mt-8 max-w-3xl rounded-2xl bg-[#F3C8BF] px-5 py-5 text-[#5E342E] shadow-sm">
-              <p className="text-xl font-black leading-tight md:text-2xl">
+              <p
+                className="text-xl font-bold leading-tight md:text-2xl"
+                style={{ fontFamily: "'Spectral', Georgia, serif" }}
+              >
                 Mas, somente nesta oportunidade, você pode levar por:
               </p>
               <ChevronDown className="mx-auto mt-3 h-7 w-7 animate-bounce" />
@@ -969,7 +959,7 @@ export default function App() {
           <div className="grid gap-10 border-b border-white/10 pb-10 md:grid-cols-[1.3fr_1fr]">
             <div>
               <p className="text-2xl font-black">Casa Organizada</p>
-              <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#CDBCB4]">
+              <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#E0D0C8]">
                 Soluções visuais para ajudar famílias a organizar cada ambiente,
                 dividir melhor as tarefas e manter uma rotina mais leve.
               </p>
@@ -978,7 +968,7 @@ export default function App() {
               <p className="text-sm font-black uppercase tracking-[.18em] text-[#F2A99D]">
                 Informações
               </p>
-              <div className="mt-4 space-y-2 text-sm text-[#CDBCB4]">
+              <div className="mt-4 space-y-2 text-sm text-[#E0D0C8]">
                 <p>Produto 100% digital</p>
                 <p>Acesso pelo celular ou material para impressão</p>
                 <p>Entrega por e-mail ou WhatsApp</p>
@@ -986,7 +976,7 @@ export default function App() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col items-center justify-between gap-3 pt-8 text-center text-xs text-[#9F8C84] md:flex-row md:text-left">
+          <div className="flex flex-col items-center justify-between gap-3 pt-8 text-center text-xs text-[#B5A39B] md:flex-row md:text-left">
             <p>© 2026 Casa Organizada. Todos os direitos reservados.</p>
             <p>
               Resultados variam conforme a rotina e a aplicação do material.
