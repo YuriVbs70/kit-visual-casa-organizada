@@ -10,6 +10,7 @@ import {
   Printer,
   Quote,
   ShoppingBag,
+  ShieldCheck,
   X,
   Zap,
 } from "lucide-react";
@@ -933,25 +934,81 @@ export default function App() {
       </section>
 
       {/* 11 — RODAPÉ */}
-      <footer className="bg-[#2D2522] py-12 text-white">
+      <footer className="bg-[#2D2522] py-14 text-white">
         <div className="mx-auto max-w-6xl px-5">
-          <div className="grid gap-10 border-b border-white/10 pb-10 md:grid-cols-[1.3fr_1fr]">
+          <div className="grid gap-10 border-b border-white/10 pb-10 md:grid-cols-[1.3fr_1fr_1fr]">
             <div>
-              <p className="text-2xl font-black">Casa Organizada</p>
-              <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#E0D0C8]">
+              <div className="flex items-center gap-2.5">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#F2A99D]/15 ring-1 ring-[#F2A99D]/30">
+                  <Home className="h-5 w-5 text-[#F2A99D]" />
+                </div>
+                <p className="text-2xl font-black tracking-tight">Casa Organizada</p>
+              </div>
+              <p className="mt-4 max-w-sm text-sm leading-relaxed text-[#E0D0C8]">
                 Soluções visuais para ajudar famílias a organizar cada ambiente,
                 dividir melhor as tarefas e manter uma rotina mais leve.
               </p>
+              <div className="mt-5 flex gap-3">
+                <a
+                  href="#"
+                  aria-label="Instagram da Casa Organizada"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-[#E0D0C8] ring-1 ring-white/10 transition hover:bg-white/10 hover:text-white"
+                >
+                  <Instagram className="h-5 w-5" />
+                </a>
+                <a
+                  href="#"
+                  aria-label="Facebook da Casa Organizada"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-[#E0D0C8] ring-1 ring-white/10 transition hover:bg-white/10 hover:text-white"
+                >
+                  <Facebook className="h-5 w-5" />
+                </a>
+              </div>
             </div>
             <div>
               <p className="text-sm font-black uppercase tracking-[.18em] text-[#F2A99D]">
                 Informações
               </p>
-              <div className="mt-4 space-y-2 text-sm text-[#E0D0C8]">
-                <p>Produto 100% digital</p>
-                <p>Acesso pelo celular ou material para impressão</p>
-                <p>Entrega por e-mail ou WhatsApp</p>
-                <p>Atendimento e suporte após a compra</p>
+              <div className="mt-4 space-y-2.5 text-sm text-[#E0D0C8]">
+                <p className="flex items-center gap-2">
+                  <Check className="h-4 w-4 shrink-0 text-[#B8EFA4]" />
+                  Produto 100% digital
+                </p>
+                <p className="flex items-center gap-2">
+                  <Check className="h-4 w-4 shrink-0 text-[#B8EFA4]" />
+                  Acesso pelo celular ou material para impressão
+                </p>
+                <p className="flex items-center gap-2">
+                  <Check className="h-4 w-4 shrink-0 text-[#B8EFA4]" />
+                  Entrega imediata por e-mail ou WhatsApp
+                </p>
+                <p className="flex items-center gap-2">
+                  <Check className="h-4 w-4 shrink-0 text-[#B8EFA4]" />
+                  Atendimento e suporte após a compra
+                </p>
+              </div>
+            </div>
+            <div>
+              <p className="text-sm font-black uppercase tracking-[.18em] text-[#F2A99D]">
+                Compra segura
+              </p>
+              <div className="mt-4 space-y-2.5 text-sm text-[#E0D0C8]">
+                <p className="flex items-center gap-2">
+                  <ShieldCheck className="h-4 w-4 shrink-0 text-[#B8EFA4]" />
+                  Pagamento processado em ambiente criptografado
+                </p>
+                <p className="flex items-center gap-2">
+                  <ShieldCheck className="h-4 w-4 shrink-0 text-[#B8EFA4]" />
+                  Seus dados pessoais e financeiros são protegidos
+                </p>
+                <p className="flex items-center gap-2">
+                  <ShieldCheck className="h-4 w-4 shrink-0 text-[#B8EFA4]" />
+                  Garantia de satisfação ou seu dinheiro de volta
+                </p>
+                <p className="flex items-center gap-2">
+                  <ShieldCheck className="h-4 w-4 shrink-0 text-[#B8EFA4]" />
+                  Compra 100% segura e protegida
+                </p>
               </div>
             </div>
           </div>
