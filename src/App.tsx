@@ -258,28 +258,9 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
   );
 }
 
-function useCountdown(durationInSeconds: number) {
-  const [secondsLeft, setSecondsLeft] = useState(durationInSeconds);
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setSecondsLeft((current) => Math.max(0, current - 1));
-    }, 1000);
-
-    return () => window.clearInterval(timer);
-  }, []);
-
-  const minutes = Math.floor(secondsLeft / 60)
-    .toString()
-    .padStart(2, "0");
-  const seconds = (secondsLeft % 60).toString().padStart(2, "0");
-
-  return `${minutes}:${seconds}`;
-}
-
 export default function App() {
   const [simplePackageUpsellOpen, setSimplePackageUpsellOpen] = useState(false);
-  const countdown = useCountdown(17 * 60);
+  const today = new Date().toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
   const goToCheckout = (url: string) => window.location.assign(url);
   const chooseDiscountedCompletePackage = () => {
     setSimplePackageUpsellOpen(false);
@@ -309,11 +290,9 @@ export default function App() {
               Essa oferta irá encerrar em:
             </span>
             <span
-              className="rounded-lg bg-red-950 px-3 py-1.5 text-lg font-black tabular-nums tracking-wider text-white shadow-sm"
-              aria-live="polite"
-              aria-label={`Tempo restante: ${countdown}`}
+              className="rounded-lg bg-red-950 px-3 py-1.5 text-lg font-black tracking-wider text-white shadow-sm"
             >
-              {countdown}
+              {today}
             </span>
           </div>
         </div>
