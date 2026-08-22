@@ -226,7 +226,7 @@ function Reveal({
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-700 ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}
+      className={`transition-all duration-500 ease-out ${visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"} ${className}`}
     >
       {children}
     </div>
@@ -331,7 +331,7 @@ export default function App() {
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#3E332F]/80 via-[#3E332F]/45 to-transparent"
         />
-        <div className="pointer-events-none absolute right-0 top-20 z-[1] h-80 w-80 rounded-full bg-[#F3C8BF]/15 blur-[120px]" />
+        <div className="pointer-events-none absolute right-0 top-20 z-[1] h-80 w-80 rounded-full bg-[#F3C8BF]/15 blur-[80px]" />
         <div className="relative z-10 mx-auto grid min-h-[720px] max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-[1.05fr_.95fr] md:py-20">
           <div className="contents md:order-2 md:block">
             <div className="order-1 text-center">
@@ -467,7 +467,7 @@ export default function App() {
                 className="group rounded-3xl border border-white/10 bg-[#443733] p-6 shadow-lg transition duration-300 hover:-translate-y-1 hover:border-[#F2A99D]/40 hover:bg-[#4B3B36] hover:shadow-2xl"
               >
                 <div className="relative flex h-24 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-[#FFF8F3] via-[#F7E5DE] to-[#EBC4BA] shadow-inner">
-                  <div className="absolute -left-5 -top-5 h-16 w-16 rounded-full bg-white/60 blur-xl" />
+                  <div className="absolute -left-5 -top-5 h-16 w-16 rounded-full bg-white/60 blur-md" />
                   <span
                     className="relative text-5xl drop-shadow-sm transition duration-300 group-hover:scale-110"
                     role="img"
@@ -499,7 +499,7 @@ export default function App() {
       </section>
 
       {/* 5 — IDEAL PARA */}
-      <section className="bg-[#F7EEE8] py-20">
+      <section className="bg-[#F7EEE8] py-20" style={{ contentVisibility: 'auto' }}>
         <div className="mx-auto max-w-6xl px-5">
           <Reveal className="text-center">
             <h2
@@ -589,7 +589,7 @@ export default function App() {
       </section>
 
       {/* 6 — RELATOS */}
-      <section className="bg-[#FFF8F3] py-20">
+      <section className="bg-[#FFF8F3] py-20" style={{ contentVisibility: 'auto' }}>
         <div className="mx-auto max-w-6xl px-5">
           <Reveal className="text-center">
             <p className="eyebrow">Relatos de quem já aplicou</p>
@@ -646,7 +646,7 @@ export default function App() {
       </section>
 
       {/* 7 — PRODUTO PRINCIPAL */}
-      <section className="bg-[#3A302C] py-20 text-white">
+      <section className="bg-[#3A302C] py-20 text-white" style={{ contentVisibility: 'auto' }}>
         <div className="mx-auto max-w-6xl px-5">
           <Reveal className="text-center">
             <h2 className="section-title text-white">O que você irá receber</h2>
@@ -676,7 +676,7 @@ export default function App() {
       </section>
 
       {/* 8 — BÔNUS */}
-      <section className="bg-[#3A302C] pb-20 text-white">
+      <section className="bg-[#3A302C] pb-20 text-white" style={{ contentVisibility: 'auto' }}>
         <div className="mx-auto max-w-6xl border-t border-white/10 px-5 pt-20">
           <Reveal className="text-center">
             <h2 className="section-title text-white">
@@ -918,7 +918,7 @@ export default function App() {
       </section>
 
       {/* 10 — FAQ */}
-      <section className="bg-[#FFF8F3] py-20">
+      <section className="bg-[#FFF8F3] py-20" style={{ contentVisibility: 'auto' }}>
         <div className="mx-auto max-w-3xl px-5">
           <Reveal className="text-center">
             <p className="eyebrow">Perguntas frequentes</p>

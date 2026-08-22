@@ -25,5 +25,8 @@
 
 .showcase-track {
   animation: showcase-scroll-right 28s linear infinite;
-  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase-track { animation: none; }
 }
