@@ -5,7 +5,7 @@ import {
   ChevronDown,
   Clock3,
   Facebook,
-  Chrome as Home,
+  House as Home,
   Instagram,
   Printer,
   Quote,
