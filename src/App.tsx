@@ -271,10 +271,8 @@ export default function App() {
     setSimplePackageUpsellOpen(false);
     goToCheckout("https://pay.lowify.com.br/checkout?product_id=oSCTzK");
   };
-  const scrollToCompleteOffer = () =>
-    document
-      .getElementById("oferta-completa")
-      ?.scrollIntoView({ behavior: "smooth", block: "center" });
+  const goToCompletePackage = () =>
+    goToCheckout("https://pay.lowify.com.br/checkout?product_id=EQIN0e");
   return (
     <div className="min-h-screen bg-white text-neutral-900 antialiased">
       <SimplePackageUpsell
@@ -327,7 +325,7 @@ export default function App() {
             </div>
             <div className="order-3 flex justify-center md:mt-8">
               <CtaButton
-                onClick={scrollToCompleteOffer}
+                onClick={goToCompletePackage}
                 label="Quero acessar os mapas"
                 variant="maps"
               />
@@ -470,7 +468,7 @@ export default function App() {
           </div>
           <Reveal className="mt-10 text-center">
             <CtaButton
-              onClick={scrollToCompleteOffer}
+              onClick={goToCompletePackage}
               label="Quero acessar os mapas"
               variant="maps"
             />
