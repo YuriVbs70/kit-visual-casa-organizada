@@ -825,7 +825,7 @@ export default function App() {
                   </p>
                 </div>
                 <div className="mb-8 space-y-3">
-                  {["20 guias visuais"].map((item) => (
+                  {["20 guias visuais", "7 dias de garantia"].map((item) => (
                     <p
                       key={item}
                       className="flex items-center gap-2 font-semibold"
@@ -887,6 +887,7 @@ export default function App() {
                     "Bônus 1 — Etiquetas “Cada coisa no seu lugar”",
                     "Bônus 2 — Organização para casas pequenas",
                     "Bônus 3 — Checklist visual da casa organizada",
+                    "7 dias de garantia",
                   ].map((item) => (
                     <p
                       key={item}
