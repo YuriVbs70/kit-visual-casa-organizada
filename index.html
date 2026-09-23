@@ -16,9 +16,48 @@
     <meta name="twitter:title" content="Casa em Ordem | Kit Visual de Organização" />
     <meta name="twitter:description" content="20 guias visuais para organizar e manter cada ambiente com mais facilidade." />
     <meta name="twitter:image" content="https://raw.githubusercontent.com/YuriVbs70/kit-visual-casa-organizada/main/public/og.png" />
+    <!-- Meta Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = true;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = true;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
+      fbq("init", "28423940993933358");
+      fbq("track", "PageView");
+    </script>
+    <!-- End Meta Pixel Code -->
     <title>Casa em Ordem | Kit Visual de Organização</title>
   </head>
   <body>
+    <!-- Meta Pixel Code (noscript fallback) -->
+    <noscript>
+      <img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=28423940993933358&amp;ev=PageView&amp;noscript=1"
+        alt=""
+      />
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
