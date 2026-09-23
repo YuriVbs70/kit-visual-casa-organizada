@@ -265,11 +265,11 @@ export default function App() {
   const goToCheckout = (url: string) => window.location.assign(url);
   const chooseDiscountedCompletePackage = () => {
     setSimplePackageUpsellOpen(false);
-    goToCheckout("https://pay.lowify.com.br/checkout.php?product_id=MHiCNV");
+    goToCheckout("https://pay.wiapy.com/0hbAxekDq2Y");
   };
   const keepSimplePackage = () => {
     setSimplePackageUpsellOpen(false);
-    goToCheckout("https://pay.lowify.com.br/checkout?product_id=oSCTzK");
+    goToCheckout("https://pay.wiapy.com/cfM4OzYJSghN");
   };
   const scrollToCompleteOffer = () =>
     document
@@ -885,7 +885,7 @@ export default function App() {
                 <CtaButton
                   onClick={() =>
                     goToCheckout(
-                      "https://pay.lowify.com.br/checkout?product_id=EQIN0e",
+                      "https://pay.wiapy.com/xj75mREgTBiu",
                     )
                   }
                   label="Quero o pacote completo"
