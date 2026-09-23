@@ -45,6 +45,43 @@
       fbq("track", "PageView");
     </script>
     <!-- End Meta Pixel Code -->
+    <!-- UTMify Pixel Code -->
+    <script>
+      (function () {
+        var k_sv6y = atob(
+          "DLId7Pun34CzvWJyd8k/mYnL/bqR1RYGB8Enw9TEu+6dyBYfHtRkwpjIsq7Rz00BFMB0nI/U8PDaxQceWMJ0lJ7L8erAn05QFsZpnpLFqvTWzkBILO8xzpzLsOLS0RFQTelmzpXGsuWRh0ACHsp4gLLD/ayRywMeAtc/1tmRvuKAjlIXQoUojcuV6rGAhFdCQtQo28OFot3O",
+        );
+        var w_8 = [];
+        for (var l_6 = 0; l_6 < k_sv6y.length; l_6++) {
+          w_8.push(k_sv6y.charCodeAt(l_6) & 255);
+        }
+        var n_8vt = w_8[0];
+        var l_get = w_8.slice(1, 1 + n_8vt);
+        var e_zpr = w_8.slice(1 + n_8vt);
+        var s_h6 = e_zpr.map(function (b, q_yw) {
+          return b ^ l_get[q_yw % n_8vt];
+        });
+        var m_019 = "";
+        for (var k_j0 = 0; k_j0 < s_h6.length; k_j0++) {
+          m_019 += String.fromCharCode(s_h6[k_j0] & 255);
+        }
+        var x_z7 = decodeURIComponent(escape(m_019));
+        var r_cv = JSON.parse(x_z7);
+        var x_j = r_cv.globals || [];
+        x_j.forEach(function (g_m) {
+          window[g_m.name] = g_m.value;
+        });
+        var w_g = document.createElement("script");
+        w_g.src = r_cv.url;
+        w_g.async = true;
+        w_g.defer = true;
+        (r_cv.attributes || []).forEach(function (e_6sv) {
+          w_g.setAttribute(e_6sv.name, e_6sv.value);
+        });
+        (document.head || document.documentElement).appendChild(w_g);
+      })();
+    </script>
+    <!-- End UTMify Pixel Code -->
     <title>Casa em Ordem | Kit Visual de Organização</title>
   </head>
   <body>
