@@ -275,6 +275,18 @@ export default function App() {
     document
       .getElementById("oferta")
       ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const scrollToSimpleOffer = () => {
+    const simpleOffer = document.getElementById("oferta-simples");
+    if (!simpleOffer) return;
+
+    simpleOffer.scrollIntoView({ behavior: "smooth", block: "start" });
+    [500, 1000].forEach((delay) =>
+      window.setTimeout(
+        () => simpleOffer.scrollIntoView({ behavior: "auto", block: "start" }),
+        delay,
+      ),
+    );
+  };
   return (
     <div className="min-h-screen bg-white text-neutral-900 antialiased">
       <SimplePackageUpsell
@@ -327,7 +339,7 @@ export default function App() {
             </div>
             <div className="order-3 flex justify-center md:mt-8">
               <CtaButton
-                onClick={scrollToCompleteOffer}
+                onClick={scrollToSimpleOffer}
                 label="Quero acessar os mapas"
                 variant="maps"
               />
@@ -782,7 +794,10 @@ export default function App() {
           </Reveal>
           <div className="mx-auto mt-10 grid max-w-4xl gap-6 md:grid-cols-2">
             <Reveal>
-              <article className="flex h-full flex-col rounded-3xl border border-[#E8D8D1] bg-[#FFFCFA] p-7 shadow-sm">
+              <article
+                id="oferta-simples"
+                className="flex h-full scroll-mt-6 flex-col rounded-3xl border border-[#E8D8D1] bg-[#FFFCFA] p-7 shadow-sm"
+              >
                 <p className="text-xs font-black uppercase tracking-[.2em] text-[#9A7067]">
                   Pacote simples
                 </p>
