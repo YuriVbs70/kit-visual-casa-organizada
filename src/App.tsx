@@ -279,13 +279,7 @@ export default function App() {
     const simpleOffer = document.getElementById("oferta-simples");
     if (!simpleOffer) return;
 
-    simpleOffer.scrollIntoView({ behavior: "smooth", block: "start" });
-    [500, 1000].forEach((delay) =>
-      window.setTimeout(
-        () => simpleOffer.scrollIntoView({ behavior: "auto", block: "start" }),
-        delay,
-      ),
-    );
+    simpleOffer.scrollIntoView({ behavior: "auto", block: "start" });
   };
   return (
     <div className="min-h-screen bg-white text-neutral-900 antialiased">
@@ -491,7 +485,7 @@ export default function App() {
       </section>
 
       {/* 5 — IDEAL PARA */}
-      <section className="bg-[#F7EEE8] py-20" style={{ contentVisibility: 'auto' }}>
+      <section className="bg-[#F7EEE8] py-20">
         <div className="mx-auto max-w-6xl px-5">
           <Reveal className="text-center">
             <h2
@@ -581,7 +575,7 @@ export default function App() {
       </section>
 
       {/* 6 — RELATOS */}
-      <section className="bg-[#FFF8F3] py-20" style={{ contentVisibility: 'auto' }}>
+      <section className="bg-[#FFF8F3] py-20">
         <div className="mx-auto max-w-6xl px-5">
           <Reveal className="text-center">
             <p className="eyebrow">Relatos de quem já aplicou</p>
@@ -638,7 +632,7 @@ export default function App() {
       </section>
 
       {/* 7 — PRODUTO PRINCIPAL */}
-      <section className="bg-[#3A302C] py-20 text-white" style={{ contentVisibility: 'auto' }}>
+      <section className="bg-[#3A302C] py-20 text-white">
         <div className="mx-auto max-w-6xl px-5">
           <Reveal className="text-center">
             <h2 className="section-title text-white">O que você irá receber</h2>
@@ -668,7 +662,7 @@ export default function App() {
       </section>
 
       {/* 8 — BÔNUS */}
-      <section className="bg-[#3A302C] pb-20 text-white" style={{ contentVisibility: 'auto' }}>
+      <section className="bg-[#3A302C] pb-20 text-white">
         <div className="mx-auto max-w-6xl border-t border-white/10 px-5 pt-20">
           <Reveal className="text-center">
             <h2 className="section-title text-white">
