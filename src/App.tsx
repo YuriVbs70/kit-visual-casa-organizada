@@ -262,7 +262,13 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
 export default function App() {
   const [simplePackageUpsellOpen, setSimplePackageUpsellOpen] = useState(false);
   const today = new Date().toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
-  const goToCheckout = (url: string) => window.location.assign(url);
+  const goToCheckout = (url: string) => {
+    const params = window.location.search;
+    if (params) {
+      url += (url.includes("?") ? "&" : "?") + params.slice(1);
+    }
+    window.location.assign(url);
+  };
   const chooseDiscountedCompletePackage = () => {
     setSimplePackageUpsellOpen(false);
     goToCheckout("https://pay.wiapy.com/0hbAxekDq2Y");
